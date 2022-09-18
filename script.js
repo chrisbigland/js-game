@@ -64,10 +64,25 @@ const ptDog = new PtNounCard ("cachorro", "./images/dog.jpeg")
 const ptCat = new PtNounCard ("gato", "./images/cat.webp")
 const ptRabbit = new PtNounCard ("coelho", "./images/rabbit.jpeg")
 
-ptCardContainer.innerHTML += ptDog.createPtLanguageCard()
-ptCardContainer.innerHTML += ptCat.createPtLanguageCard()
-ptCardContainer.innerHTML += ptRabbit.createPtLanguageCard()
-enCardContainer.innerHTML += enDog.createEnLanguageCard()
-enCardContainer.innerHTML += enCat.createEnLanguageCard()
-enCardContainer.innerHTML += enRabbit.createEnLanguageCard()
-// NEXT - create loop to do the above so I don't have to do it again and again. 
+// ptCardContainer.innerHTML += ptDog.createPtLanguageCard()
+// ptCardContainer.innerHTML += ptCat.createPtLanguageCard()
+// ptCardContainer.innerHTML += ptRabbit.createPtLanguageCard()
+// enCardContainer.innerHTML += enDog.createEnLanguageCard()
+// enCardContainer.innerHTML += enCat.createEnLanguageCard()
+// enCardContainer.innerHTML += enRabbit.createEnLanguageCard()
+// NEXT - create loop to do the above so I don't have to do it again and again. PUT them all in an array and loop through them??
+
+// EN CARD ARRAY
+const enCardArr = [enDog, enCat, enRabbit]
+
+enCardArr.forEach((card) => {
+    enCardContainer.innerHTML += card.createEnLanguageCard();
+})
+
+
+// PT CARD ARRAY
+const ptCardArr = [ptDog, ptCat, ptRabbit]
+
+ptCardArr.forEach((card) => {
+    ptCardContainer.innerHTML += card.createPtLanguageCard();
+})
