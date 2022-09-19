@@ -1,6 +1,5 @@
 const enCardContainer = document.querySelector("#en-card-container");
 const ptCardContainer = document.querySelector("#pt-card-container");
-const gameContainer = document.querySelector("#game-container")
 
 class EnNounCard {
     constructor(word, picture){
@@ -9,34 +8,12 @@ class EnNounCard {
     }
 
 createEnLanguageCard() {
-    const languageCard = `<style>               
-    div {
-        border: 2px solid black;
-        height:     
-    }
-    #enImg {
-        width: 50%; 
-        height: 50%;
-    }
-    </style>
-    <div><h2>${this.word}</h2> <img id="enImg" src="${this.picture}"></div>` 
+    const languageCard = `
+    <div id="en-card"><h2>${this.word}</h2> <img id="enImg" src="${this.picture}"></div>` 
     return languageCard;
 }
 
 }
-
-// GAME CONTAINER STYLINGS
-gameContainer.style.display = "flex";
-
-// EN CARD CONTAINER STYLINGS
-enCardContainer.style.border = "5px solid red";
-enCardContainer.style.height = "80vh";
-enCardContainer.style.width = "40vw";
-
-// PT CARD CONTAINER STYLINGS
-ptCardContainer.style.border = "5px solid blue";
-ptCardContainer.style.height = "80vh";
-ptCardContainer.style.width = "40vw";
 
 
 class PtNounCard {
@@ -47,7 +24,10 @@ class PtNounCard {
 }
 
 createPtLanguageCard() {
-    const languageCard = `${this.word} <button>AJUDA!</button> <button>AUDIO</button>`
+    const languageCard = `
+    <div id="pt-card">
+        <h2>${this.word}</h2> <div id="pt-card-content"><button>AJUDA!</button> <button>AUDIO</button></div>
+    </div>`
     return languageCard;
 }
 
@@ -86,14 +66,6 @@ const ptFrog = new PtNounCard ("sapo (m)", "./images/frog.jpeg");
 const ptWolf = new PtNounCard ("lobo (m)", "./images/wolf.jpeg");
 const ptTiger = new PtNounCard ("tigre (m)", "./images/tiger.jpeg");
 
-// ptCardContainer.innerHTML += ptDog.createPtLanguageCard()
-// ptCardContainer.innerHTML += ptCat.createPtLanguageCard()
-// ptCardContainer.innerHTML += ptRabbit.createPtLanguageCard()
-// enCardContainer.innerHTML += enDog.createEnLanguageCard()
-// enCardContainer.innerHTML += enCat.createEnLanguageCard()
-// enCardContainer.innerHTML += enRabbit.createEnLanguageCard()
-// NEXT - create loop to do the above so I don't have to do it again and again. PUT them all in an array and loop through them??
-
 // EN CARD ARRAY
 const enCardArr = [enDog, enCat, enRabbit, enChicken, enPig, enCow, enSheep, enHorse, enLion, enElephant, enMonkey, enBear, enMouse, enFrog, enWolf, enTiger]
 
@@ -108,3 +80,18 @@ const ptCardArr = [ptDog, ptCat, ptRabbit, ptChicken, ptPig, ptCow, ptSheep, ptH
 ptCardArr.forEach((card) => {
     ptCardContainer.innerHTML += card.createPtLanguageCard();
 })
+
+// audio sound
+
+
+
+// OUTSTANDING ACTIONS
+// make cards same size 
+// add shuffle / new game button
+// add 'I found a pair' button
+//create timer
+// create back of card design
+// make cards flip
+// add audio files - work out how to target each card as they've been created em masse using a function. Could we add the button into each PtNounCard instead?
+// make design responsive
+// make cards shuffle

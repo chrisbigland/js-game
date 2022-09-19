@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Lemonada&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color:blanchedalmond;
+}
+
+h1 {
+    text-align: center;
+    font-family: "Lemonada", sans-serif;
+}
+
+p {
+    font-family: "Lemonada", sans-serif;
+}
+
+#game-container {
+    display: flex;
+    justify-content: space-around;
+    height: 90vh;
+    width: 100vw;
+}
+
+#en-card-container {
+    border: 5px solid red;
+    height: 100%;
+    width: 40%;
+    font-size: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 25% 25% 25% 25%;
+    /* gap: 5%; */
+    font-family: "Caveat", sans-serif;
+}
+
+#pt-card-container {
+    border: 5px solid blue;
+    height: 100%;
+    width: 40%;
+    font-size: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 25% 25% 25% 25%;
+    /* gap: 5%; */
+    font-family: "Caveat", sans-serif;
+}
+
+#pt-card-content {
+    display: flex;
+    justify-content: space-around;
+}
+
+#pt-card {
+    /* background-color: aliceblue; */
+    background-image: url("./images/brazilian-flag2.jpeg");
+    border: 2px solid black;
+    text-align: center;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /* visibility: hidden; */
+}
+
+#en-card {
+    /* background-color: aliceblue;    */
+    background-image: url("./images/uk-flag.jpeg");
+    border: 2px solid black;
+    text-align: center;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+}
+
+#enImg {
+    width: 100%; 
+    height: 80%;
+    border-radius: 5px;
+}
