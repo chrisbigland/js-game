@@ -1,6 +1,8 @@
 const enCardContainer = document.querySelector("#en-card-container");
 const ptCardContainer = document.querySelector("#pt-card-container");
-const enCard = document.querySelectorAll(".en-card");
+const enCard = document.querySelector(".en-card");
+const enCardContent = document.querySelector("#en-card-content");
+
 
 
 
@@ -19,6 +21,10 @@ createEnLanguageCard() {
 
 }
 
+// enCard.addEventListener( "click", (e) => {
+//     e.target.classList.remove("en-card-content")
+// })
+
 // PT CARD CLASS
 class PtNounCard {
     constructor (word, picture, hint) {
@@ -36,6 +42,8 @@ createPtLanguageCard() {
 }
 
 }
+
+
 
 // CARD DATA stored as variables
 const enDog = new EnNounCard ("dog", "./images/dog.jpeg");
@@ -103,3 +111,4 @@ ptCardArr.forEach((card) => {
 // add audio files - work out how to target each card as they've been created em masse using a function. Could we add the button into each PtNounCard instead?
 // make design responsive
 // make cards shuffle
+

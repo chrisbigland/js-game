@@ -62,8 +62,18 @@ p {
     visibility: hidden;
 }
 
+h2 {
+    background-color: black;
+}
+
 #en-card-content {
+    /* color: greenyellow */
     visibility: hidden;
+}
+
+#foundPairBtn {
+    display: flex;
+    justify-content: center;
 }
 
 #pt-card {
@@ -76,7 +86,6 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    /* visibility: hidden; */
 }
 
 .en-card {
