@@ -62,18 +62,22 @@ p {
     visibility: hidden;
 }
 
-h2 {
-    background-color: black;
-}
-
 #en-card-content {
     /* color: greenyellow */
     visibility: hidden;
 }
 
-#foundPairBtn {
+#gameBtns {
     display: flex;
     justify-content: center;
+}
+
+#pair-btn {
+    margin-right: 1%;
+}
+
+#new-game-btn {
+    margin-left: 1%;
 }
 
 #pt-card {

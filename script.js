@@ -36,7 +36,7 @@ class PtNounCard {
 createPtLanguageCard() {
     const languageCard = `
     <div id="pt-card">
-        <div id="pt-card-content"><h2>${this.word}</h2> <div id="pt-buttons"><button>AJUDA!</button> <button>AUDIO</button></div></div>
+        <div id="pt-card-content"><h2>${this.word}</h2> <div id="pt-buttons"><button>HELP!</button> <button>AUDIO</button></div></div>
     </div>`
     return languageCard;
 }
@@ -87,8 +87,43 @@ enCardArr.forEach((card) => {
     enCardContainer.innerHTML += card.createEnLanguageCard();
 })
 
+//TIMER
+//setinterval function
+//clearinterval function
+
+let seconds = 0;
+let minutes = 4;
+
+const timer = document.querySelector("#timer");
+const timerSeconds = document.querySelector("#timer-seconds");
+const timerMins = document.querySelector("#timer-mins");
+const zeroSecond = document.querySelector("#zero-second")
+const newGameBtn = document.querySelector("#new-game-btn");
 
 
+newGameBtn.addEventListener("click", () => {
+    setInterval(function myTimer() {
+    // seconds--
+    // timerSeconds.innerHTML = seconds;
+    if (seconds === 0) {
+        minutes = minutes - 1
+        timerMins.innerHTML = `${minutes}`
+        seconds = 60
+    }
+    seconds--
+    timerSeconds.innerHTML = seconds;
+    if (seconds < 10) {
+        zeroSecond.innerHTML = `0`;
+    }
+    // if (seconds >= 10) {
+    //     zeroSecond.remove();
+    // } adding this seems to remove the '0' before single digit numbers but if I remove it then a '0' is added to double digit numbers
+    if (seconds <= 0 && minutes === 0) {
+        clearInterval(myTimer)
+        // alert(`Times Up!`)
+    }
+}, 1000) // setInterval repeats a function at every given time-interval. first parameter is the function, second is the time in milliseconds. 
+})
 
 // PT CARD ARRAY
 const ptCardArr = [ptDog, ptCat, ptRabbit, ptChicken, ptPig, ptCow, ptSheep, ptHorse, ptLion, ptElephant, ptMonkey, ptBear, ptMouse, ptFrog, ptWolf, ptTiger]
