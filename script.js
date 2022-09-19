@@ -1,6 +1,10 @@
 const enCardContainer = document.querySelector("#en-card-container");
 const ptCardContainer = document.querySelector("#pt-card-container");
+const enCard = document.querySelectorAll(".en-card");
 
+
+
+//EN CARD CLASS
 class EnNounCard {
     constructor(word, picture){
     this.word = word,
@@ -9,13 +13,13 @@ class EnNounCard {
 
 createEnLanguageCard() {
     const languageCard = `
-    <div id="en-card"><h2>${this.word}</h2> <img id="enImg" src="${this.picture}"></div>` 
+    <div class="en-card"><div id="en-card-content"><h2>${this.word}</h2> <img id="enImg" src="${this.picture}"></div></div>` 
     return languageCard;
 }
 
 }
 
-
+// PT CARD CLASS
 class PtNounCard {
     constructor (word, picture, hint) {
     this.word = word,
@@ -26,12 +30,14 @@ class PtNounCard {
 createPtLanguageCard() {
     const languageCard = `
     <div id="pt-card">
-        <h2>${this.word}</h2> <div id="pt-card-content"><button>AJUDA!</button> <button>AUDIO</button></div>
+        <div id="pt-card-content"><h2>${this.word}</h2> <div id="pt-buttons"><button>AJUDA!</button> <button>AUDIO</button></div></div>
     </div>`
     return languageCard;
 }
 
 }
+
+// CARD DATA stored as variables
 const enDog = new EnNounCard ("dog", "./images/dog.jpeg");
 const enCat = new EnNounCard ("cat", "./images/cat.webp");
 const enRabbit = new EnNounCard ("rabbit", "./images/rabbit.jpeg");
@@ -72,6 +78,8 @@ const enCardArr = [enDog, enCat, enRabbit, enChicken, enPig, enCow, enSheep, enH
 enCardArr.forEach((card) => {
     enCardContainer.innerHTML += card.createEnLanguageCard();
 })
+
+
 
 
 // PT CARD ARRAY
