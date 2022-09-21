@@ -93,12 +93,14 @@ const ptTiger = new PtNounCard ("tigre (m)", "./images/tiger.png", 16);
 // EN CARD ARRAY
 let enCardArr = [enDog, enCat, enRabbit, enChicken, enPig, enCow, enSheep, enHorse, enLion, enElephant, enMonkey, enBear, enMouse, enFrog, enWolf, enTiger]
 
-enCardArr.forEach((card) => {
+    enCardArr.forEach((card) => {
     enCardContainer.innerHTML += card.createEnLanguageCard();
 
-    // return enCardArr;
+    return enCardArr;
+    // to make the pics shuffle too, could copy the above foreach and get it to run after cards shuffled so html amended again. Could turn into a function so that there is less code. 
    
 })
+
 
 //SETTING enCard variable to a node list of everything with class '.en-card'
 const enCard = document.querySelectorAll(".en-card");
@@ -133,10 +135,10 @@ console.log(enCardContent)
 //TIMER
 //setinterval function
 //clearinterval function
-// let newArray = [];
+let newEnArray = [];
 
-let seconds = 0;
-let minutes = 4;
+let seconds = 04;
+let minutes = 0;
 
 const timer = document.querySelector("#timer");
 const timerSeconds = document.querySelector("#timer-seconds");
@@ -161,8 +163,9 @@ newGameBtn.addEventListener("click", () => {
         zeroSecond.innerHTML = "";
     }
     if (seconds === 0 && minutes === 0) {
-        clearInterval(myTimer)      // stops timer when secs and mins on 0
-        alert("Times Up!")
+        clearInterval(myTimer);      // stops timer when secs and mins on 0
+        // alert("Times Up!")
+        timer.innerHTML = `<p style="text-align:center;color:#ffa500;">Time's up!</p>`
     }
 }, 1000) // setInterval repeats a function at every given time-interval. first parameter is the function, second is the time in milliseconds. 
 
@@ -174,14 +177,25 @@ newGameBtn.addEventListener("click", () => {
         for (let i = arr.length - 1; i > 0; i--) { // for loop starts at end value and works backwards. Runs for as long as index greater than 1. 
             newPos = Math.floor(Math.random() * (i + 1));  // we need to create a random number between 0 and 8 (or the number of indexes in the arr) to get a new index position. Here we creating a random number betw 0 and 0.99 then * by i + 1 (as that is the real no of positions. counting from 1) then rounded DOWN. This gives us a new, random position number of max 8. First round of loop multiplies by 9 (index 8 + 1), then by 8 (index 7 + 1) etc.
             temp = arr[i]; // assigning each array value to a temporary variable so this is stored to temp.
-            arr[i] = arr[newPos]; // now placing the new position number we set as the index number for each array value. 
+            arr[i] = arr[newPos]; // now placing the new position number as an index number value on each array value
             arr[newPos] = temp // we will now place what we put into 'temp' into our array value with a new index number(position). Doing this in a loop means each value is swapped. 
+            // include an update to HTML here so that card content updated as looping through?
         }
+        // enCardContainer.innerHTML += [i].createEnLanguageCard()
+        //     arr.forEach((card) => {
+        // enCardContainer.innerHTML += card.createEnLanguageCard(); 
         return arr;
     }               
 
-    enCardArr = arrayShuffle(enCardArr); // enCardArr is now shuffled - need to amend pics 
+    enCardArr = arrayShuffle(enCardArr);// enCardArr is now shuffled - need to amend pics 
+    // enCardArr.forEach((card) => {
+    //     enCardContainer.innerHTML += card.createEnLanguageCard(); 
     console.log(enCardArr)
+    // enCardArr.forEach((card) => {
+    //     enCardContainer.innerHTML += card.createEnLanguageCard();
+    //     return enCardArr;
+    // })
+    
 })
 
 // PT CARD ARRAY
@@ -199,5 +213,6 @@ ptCardArr.forEach((card) => {
 // make cards flip
 // add audio files - work out how to target each card as they've been created em masse using a function. Could we add the button into each PtNounCard instead?
 // make design responsive
-// make cards shuffle - use math.random to create a random number and when 'new game' button is clicked, the cards e.g. ptDog enDog are assigned new indexes in the array. 
+// make shuffled cards show shuffled pictures too - could put them into a new array, where the function gets called?
+/// make text flash different colours when time's up
 
