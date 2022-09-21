@@ -10,7 +10,7 @@ const ptCardContainer = document.querySelector("#pt-card-container");
 class EnNounCard {
     constructor(word, picture, id){
     this.word = word,
-    this.picture = picture
+    this.picture = picture,
     this.id = id;
         // this.audio = audio
     }
@@ -92,15 +92,19 @@ const ptTiger = new PtNounCard ("tigre (m)", "./images/tiger.png", 16);
 
 // EN CARD ARRAY
 let enCardArr = [enDog, enCat, enRabbit, enChicken, enPig, enCow, enSheep, enHorse, enLion, enElephant, enMonkey, enBear, enMouse, enFrog, enWolf, enTiger]
-
+    const getCards = () => {
+    enCardContainer.innerHTML = "";
     enCardArr.forEach((card) => {
     enCardContainer.innerHTML += card.createEnLanguageCard();
 
     return enCardArr;
     // to make the pics shuffle too, could copy the above foreach and get it to run after cards shuffled so html amended again. Could turn into a function so that there is less code. 
-   
-})
 
+    
+});
+    };
+
+getCards();
 
 //SETTING enCard variable to a node list of everything with class '.en-card'
 const enCard = document.querySelectorAll(".en-card");
@@ -117,6 +121,8 @@ const enCardContent = document.querySelector("#en-card-content");
 let enCardSelected;   
 // SHOW CARD WHEN CLICKING - EVENT LISTENER AND FOREACH
 enCard.forEach((card) => {                  // looping through the enCard node list to add the click event listener
+    // include IF STATEMENT HERE? If the card is showing, flip it back over. 
+    // IF one EN card is already showing, stop event listener. 
     card.addEventListener("click", (e) => {
         console.log(e.target.id);
         enCardSelected = e.target
@@ -137,8 +143,8 @@ console.log(enCardContent)
 //clearinterval function
 let newEnArray = [];
 
-let seconds = 04;
-let minutes = 0;
+let seconds = 0;
+let minutes = 4;
 
 const timer = document.querySelector("#timer");
 const timerSeconds = document.querySelector("#timer-seconds");
@@ -146,7 +152,7 @@ const timerMins = document.querySelector("#timer-mins");
 const zeroSecond = document.querySelector("#zero-second")
 const newGameBtn = document.querySelector("#new-game-btn");
 
-
+// NEW GAME BUTTON EVENT LISTENER
 newGameBtn.addEventListener("click", () => {
     setInterval(function myTimer() {
     if (seconds === 0) {            // reducing the minutes by 1 when seconds gets to 0. 
@@ -187,10 +193,12 @@ newGameBtn.addEventListener("click", () => {
         return arr;
     }               
 
-    enCardArr = arrayShuffle(enCardArr);// enCardArr is now shuffled - need to amend pics 
-    // enCardArr.forEach((card) => {
-    //     enCardContainer.innerHTML += card.createEnLanguageCard(); 
+    newEnArray = arrayShuffle(enCardArr);// enCardArr is now shuffled - need to amend pics 
     console.log(enCardArr)
+
+    getCards();
+
+    // updateEnCardHtml()
     // enCardArr.forEach((card) => {
     //     enCardContainer.innerHTML += card.createEnLanguageCard();
     //     return enCardArr;
@@ -210,9 +218,11 @@ ptCardArr.forEach((card) => {
 // add "card" id to both encard and pt card then we can make shuffle happen to both sets of cards at once. 
 // amend timer - fix minus issue once alert is cleared. 
 // create click event for cards
-// make cards flip
+// make cards flip back when they've been turned already. 
 // add audio files - work out how to target each card as they've been created em masse using a function. Could we add the button into each PtNounCard instead?
 // make design responsive
-// make shuffled cards show shuffled pictures too - could put them into a new array, where the function gets called?
+// make shuffled cards show shuffled pictures too - could put them into a new array, where the function gets called? Could I create a function for the insertion of the html and then pass it as a second parameter in the click event for new game?
 /// make text flash different colours when time's up
-
+// write example sentences
+// shuffle - seems to produce the same results if clicking quickly but leaving a second or two in between you get different results
+//complete readme - add wordreference to acknowledgements
