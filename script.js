@@ -29,7 +29,8 @@ createEnLanguageCard() {
 
 
 
-// const british-4 = document.querySelector = ("#british-4");
+// const british4 = document.querySelector = ("#british-4");
+
 // const britishID = document.querySelector(`british-${this.id}`)
 
 
@@ -47,9 +48,10 @@ createEnLanguageCard() {
 
 // PT CARD CLASS
 class PtNounCard {
-    constructor (word, picture, hint) {
+    constructor (word, picture, id, hint) {
     this.word = word,
     this.picture = picture,
+    this.id = id,
     this.hint = hint
 }
 
@@ -69,38 +71,38 @@ createPtLanguageCard() {
 
 // CARD DATA stored as variables
 const enDog = new EnNounCard ("dog", "./images/dog.jpeg", 1);
-const enCat = new EnNounCard ("cat", "./images/cat.webp", 2);
-const enRabbit = new EnNounCard ("rabbit", "./images/rabbit.jpeg", 3);
-const enChicken = new EnNounCard ("chicken", "./images/chicken.jpeg", 4);
-const enPig = new EnNounCard ("pig", "./images/pig.jpeg", 5);
-const enCow = new EnNounCard ("cow", "./images/cow.jpeg", 6);
-const enSheep = new EnNounCard ("sheep", "./images/sheep.jpeg", 7);
-const enHorse = new EnNounCard ("horse", "./images/horse.jpeg", 8);
-const enLion = new EnNounCard ("lion", "./images/lion.jpeg", 9);
-const enElephant = new EnNounCard ("elephant", "./images/elephant.jpeg", 10);
-const enMonkey = new EnNounCard ("monkey", "./images/monkey.jpeg", 11);
-const enBear = new EnNounCard ("bear", "./images/bear.jpeg", 12);
-const enMouse = new EnNounCard ("mouse", "./images/mouse.jpeg", 13);
-const enFrog = new EnNounCard ("frog", "./images/frog.jpeg", 14);
-const enWolf = new EnNounCard ("wolf", "./images/wolf.jpeg", 15);
-const enTiger = new EnNounCard ("tiger", "./images/tiger.jpeg", 16);
+const enCat = new EnNounCard ("cat", "./images/cat.png", 2);
+const enRabbit = new EnNounCard ("rabbit", "./images/rabbit.png", 3);
+const enChicken = new EnNounCard ("chicken", "./images/chicken.png", 4);
+const enPig = new EnNounCard ("pig", "./images/pig.png", 5);
+const enCow = new EnNounCard ("cow", "./images/cow.png", 6);
+const enSheep = new EnNounCard ("sheep", "./images/sheep.png", 7);
+const enHorse = new EnNounCard ("horse", "./images/horse.png", 8);
+const enLion = new EnNounCard ("lion", "./images/lion.png", 9);
+const enElephant = new EnNounCard ("elephant", "./images/elephant.png", 10);
+const enMonkey = new EnNounCard ("monkey", "./images/monkey.png", 11);
+const enBear = new EnNounCard ("bear", "./images/bear.png", 12);
+const enMouse = new EnNounCard ("mouse", "./images/mouse.png", 13);
+const enFrog = new EnNounCard ("frog", "./images/frog.png", 14);
+const enWolf = new EnNounCard ("wolf", "./images/wolf.png", 15);
+const enTiger = new EnNounCard ("tiger", "./images/tiger.png", 16);
 
-const ptDog = new PtNounCard ("cachorro (m)", "./images/dog.jpeg")
-const ptCat = new PtNounCard ("gato (m)", "./images/cat.webp")
-const ptRabbit = new PtNounCard ("coelho (m)", "./images/rabbit.jpeg")
-const ptChicken = new PtNounCard ("galinha (f)", "./images/chicken.jpeg")
-const ptPig = new PtNounCard ("porco (m)", "./images/pig.jpeg");
-const ptCow = new PtNounCard ("vaca (f)", "./images/cow.jpeg");
-const ptSheep = new PtNounCard ("ovelha (f)", "./images/sheep.jpeg");
-const ptHorse = new PtNounCard ("cavalo (m)", "./images/horse.jpeg");
-const ptLion = new PtNounCard ("leão (m)", "./images/lion.jpeg");
-const ptElephant = new PtNounCard ("elefante (m)", "./images/elephant.jpeg");
-const ptMonkey = new PtNounCard ("macaco (m)", "./images/monkey.jpeg");
-const ptBear = new PtNounCard ("urso (m)", "./images/bear.jpeg");
-const ptMouse = new PtNounCard ("rato (m)", "./images/mouse.jpeg");
-const ptFrog = new PtNounCard ("sapo (m)", "./images/frog.jpeg");
-const ptWolf = new PtNounCard ("lobo (m)", "./images/wolf.jpeg");
-const ptTiger = new PtNounCard ("tigre (m)", "./images/tiger.jpeg");
+const ptDog = new PtNounCard ("cachorro (m)", "./images/dog.png", 1)
+const ptCat = new PtNounCard ("gato (m)", "./images/cat.webp", 2)
+const ptRabbit = new PtNounCard ("coelho (m)", "./images/rabbit.png", 3)
+const ptChicken = new PtNounCard ("galinha (f)", "./images/chicken.png", 4)
+const ptPig = new PtNounCard ("porco (m)", "./images/pig.png", 5);
+const ptCow = new PtNounCard ("vaca (f)", "./images/cow.png", 6);
+const ptSheep = new PtNounCard ("ovelha (f)", "./images/sheep.png", 7);
+const ptHorse = new PtNounCard ("cavalo (m)", "./images/horse.png", 8);
+const ptLion = new PtNounCard ("leão (m)", "./images/lion.png", 9);
+const ptElephant = new PtNounCard ("elefante (m)", "./images/elephant.png", 10);
+const ptMonkey = new PtNounCard ("macaco (m)", "./images/monkey.png", 11);
+const ptBear = new PtNounCard ("urso (m)", "./images/bear.png", 12);
+const ptMouse = new PtNounCard ("rato (m)", "./images/mouse.png", 13);
+const ptFrog = new PtNounCard ("sapo (m)", "./images/frog.png", 14);
+const ptWolf = new PtNounCard ("lobo (m)", "./images/wolf.png", 15);
+const ptTiger = new PtNounCard ("tigre (m)", "./images/tiger.png", 16);
 
 // Array.forEeach(card => {
 //     let enCard = new card(card.animal, card.imgSrc, card.audio)
@@ -116,20 +118,35 @@ enCardArr.forEach((card) => {
 const enCard = document.querySelectorAll(".en-card");
 console.log(enCard);
 
+//SHUFFLE EN CARD ARR
+
+
+
 
 const enCardContent = document.querySelector("#en-card-content");
-
-let enCardID;   
+let enCardSelected;   
 enCard.forEach((card) => {                  // looping through the enCard node list to add the click event listener
     card.addEventListener("click", (e) => {
-        console.log(e.target.id)
-        // enCardID = e.target.id
-        // console.log(enCardID)
-        // // const enCardIDVar = document.querySelector(`#${enCardID}`)
-        // enCardID.classList.add("unhide")
+        console.log(e.target.id);
+        enCardSelected = e.target
+        return enCardSelected;
+        // console.log(enCardSelected)
+        // // const enCardIDVar = document.querySelector(`#${enCard}`)
+        // enCardSelected.classList.add("unhide")
     })
 })
 
+// const hideFunction = () => {
+// enCardSelected 
+// }
+
+// console.log(enCardSelected.children[0])
+
+console.log(enCardContent)
+
+// child = enCardSelected.querySelectorAll
+
+// enCardContent.style.visibility = "visible"
 
 // const buttonClicked = () => {
 //     alert("button clicked, id"+this.id+" text"+this.innerHTML);

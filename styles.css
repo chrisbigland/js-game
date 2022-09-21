@@ -65,12 +65,12 @@ p {
 #pt-card-content {
     display: flex;
     flex-direction: column;
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 
 #en-card-content {
     /* color: greenyellow */
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 
 #gameBtns {
