@@ -26,26 +26,6 @@ createEnLanguageCard() {
 
 }
 
-
-
-
-// const british4 = document.querySelector = ("#british-4");
-
-// const britishID = document.querySelector(`british-${this.id}`)
-
-
-
-// britishID.addEventListener("click", (card) => {
-//     card.style.visibility = "visible";
-// })
-
-// enCard.addEventListener("click", () => {
-//     // e.target.classList.remove("en-card-content")
-//     // enCardContent.style.visibility = "visible";
-//     console.log(`this click event works`)
-// })
-
-
 // PT CARD CLASS
 class PtNounCard {
     constructor (word, picture, id, hint) {
@@ -59,6 +39,8 @@ class PtNounCard {
 //     // grab the audio tag -> then hit play/pause -> look into audio/video tag W3Schools - add in the following 'onclick' to the 'help' button below. <button onclick=${this.playAudio()}>
 // }
 
+
+//PT CREATE LANGUAGE CARD METHOD
 createPtLanguageCard() {
     const languageCard = `
     <div id="pt-card">
@@ -104,31 +86,41 @@ const ptFrog = new PtNounCard ("sapo (m)", "./images/frog.png", 14);
 const ptWolf = new PtNounCard ("lobo (m)", "./images/wolf.png", 15);
 const ptTiger = new PtNounCard ("tigre (m)", "./images/tiger.png", 16);
 
-// Array.forEeach(card => {
+// Array.forEach(card => {
 //     let enCard = new card(card.animal, card.imgSrc, card.audio)
 // })
 
 // EN CARD ARRAY
-const enCardArr = [enDog, enCat, enRabbit, enChicken, enPig, enCow, enSheep, enHorse, enLion, enElephant, enMonkey, enBear, enMouse, enFrog, enWolf, enTiger]
+let enCardArr = [enDog, enCat, enRabbit, enChicken, enPig, enCow, enSheep, enHorse, enLion, enElephant, enMonkey, enBear, enMouse, enFrog, enWolf, enTiger]
 
 enCardArr.forEach((card) => {
     enCardContainer.innerHTML += card.createEnLanguageCard();
+
+    // return enCardArr;
    
 })
+
+//SETTING enCard variable to a node list of everything with class '.en-card'
 const enCard = document.querySelectorAll(".en-card");
 console.log(enCard);
 
-//SHUFFLE EN CARD ARR
+
+// SHOW CARD FUNCTION
+const showCard = (cardEl) => cardEl.childNodes[0].style.visibility = "visible"; // with childNodes we can access children of element
 
 
 
 
 const enCardContent = document.querySelector("#en-card-content");
 let enCardSelected;   
+// SHOW CARD WHEN CLICKING - EVENT LISTENER AND FOREACH
 enCard.forEach((card) => {                  // looping through the enCard node list to add the click event listener
     card.addEventListener("click", (e) => {
         console.log(e.target.id);
         enCardSelected = e.target
+        showCard(enCardSelected)
+        console.log(enCardSelected.childNodes[0])
+        // enCardSelected.childNodes[0].style.visibility = "visible";
         return enCardSelected;
         // console.log(enCardSelected)
         // // const enCardIDVar = document.querySelector(`#${enCard}`)
@@ -136,26 +128,12 @@ enCard.forEach((card) => {                  // looping through the enCard node l
     })
 })
 
-// const hideFunction = () => {
-// enCardSelected 
-// }
-
-// console.log(enCardSelected.children[0])
-
 console.log(enCardContent)
-
-// child = enCardSelected.querySelectorAll
-
-// enCardContent.style.visibility = "visible"
-
-// const buttonClicked = () => {
-//     alert("button clicked, id"+this.id+" text"+this.innerHTML);
-// }
-
 
 //TIMER
 //setinterval function
 //clearinterval function
+// let newArray = [];
 
 let seconds = 0;
 let minutes = 4;
@@ -169,12 +147,6 @@ const newGameBtn = document.querySelector("#new-game-btn");
 
 newGameBtn.addEventListener("click", () => {
     setInterval(function myTimer() {
-    // newGameBtn.addEventListener("click", () => {
-    //     // seconds = 0;
-    //     // minutes = 4;
-    //     clearInterval(myTimer)
-    //     myTimer()
-    // })
     if (seconds === 0) {            // reducing the minutes by 1 when seconds gets to 0. 
         minutes = minutes - 1  // not 100% sure why this can't be minutes--?
         timerMins.innerHTML = `${minutes}`
@@ -193,6 +165,23 @@ newGameBtn.addEventListener("click", () => {
         alert("Times Up!")
     }
 }, 1000) // setInterval repeats a function at every given time-interval. first parameter is the function, second is the time in milliseconds. 
+
+//SHUFFLE enCardArr (and later add on ptCardArr
+    let arrayShuffle = function(arr) { // creating new arrayShuffle function. Parameter/placeholder 'arr'
+        let newPos,                     // declaring new variables 'newPos' and 'temp' to be used within function
+            temp;
+
+        for (let i = arr.length - 1; i > 0; i--) { // for loop starts at end value and works backwards. Runs for as long as index greater than 1. 
+            newPos = Math.floor(Math.random() * (i + 1));  // we need to create a random number between 0 and 8 (or the number of indexes in the arr) to get a new index position. Here we creating a random number betw 0 and 0.99 then * by i + 1 (as that is the real no of positions. counting from 1) then rounded DOWN. This gives us a new, random position number of max 8. First round of loop multiplies by 9 (index 8 + 1), then by 8 (index 7 + 1) etc.
+            temp = arr[i]; // assigning each array value to a temporary variable so this is stored to temp.
+            arr[i] = arr[newPos]; // now placing the new position number we set as the index number for each array value. 
+            arr[newPos] = temp // we will now place what we put into 'temp' into our array value with a new index number(position). Doing this in a loop means each value is swapped. 
+        }
+        return arr;
+    }               
+
+    enCardArr = arrayShuffle(enCardArr); // enCardArr is now shuffled - need to amend pics 
+    console.log(enCardArr)
 })
 
 // PT CARD ARRAY
@@ -202,18 +191,9 @@ ptCardArr.forEach((card) => {
     ptCardContainer.innerHTML += card.createPtLanguageCard();
 })
 
-// audio sound
-
-
-
-// enCard.addEventListener("click", () => {
-//     // e.target.classList.remove("en-card-content")
-//     // enCardContent.style.visibility = "visible";
-//     console.log(`this click event works`)
-// })
-
 
 // OUTSTANDING ACTIONS
+// add "card" id to both encard and pt card then we can make shuffle happen to both sets of cards at once. 
 // amend timer - fix minus issue once alert is cleared. 
 // create click event for cards
 // make cards flip
