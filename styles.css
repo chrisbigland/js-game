@@ -18,6 +18,7 @@ h1 {
 
 p {
     font-family: "Lemonada", sans-serif;
+    font-size: 0.9rem;
 }
 
 #game-container {
@@ -45,6 +46,26 @@ p {
     font-family: "Caveat", sans-serif;
 }
 
+@media screen and (max-width: 1250px) {
+    #en-card-container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    p {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #en-card-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    p {
+        font-size: 0.7rem;
+    }
+}
+
 #pt-card-container {
     /* border: 5px solid blue; */
     height: 100%;
@@ -56,6 +77,20 @@ p {
     gap: 1%;
     font-family: "Caveat", sans-serif;
 }
+
+@media screen and (max-width: 1250px) {
+    #pt-card-container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #pt-card-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
 
 #pt-buttons {
     display: flex;
@@ -70,7 +105,7 @@ p {
 
 #en-card-content {
     /* color: greenyellow */
-    /* visibility: hidden; */
+    visibility: hidden;
 }
 
 #gameBtns {

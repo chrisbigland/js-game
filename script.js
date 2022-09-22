@@ -106,9 +106,7 @@ let enCardArr = [enDog, enCat, enRabbit, enChicken, enPig, enCow, enSheep, enHor
 
 getCards();
 
-//SETTING enCard variable to a node list of everything with class '.en-card'
-const enCard = document.querySelectorAll(".en-card");
-console.log(enCard);
+
 
 
 // SHOW CARD FUNCTION
@@ -119,22 +117,7 @@ const showCard = (cardEl) => cardEl.childNodes[0].style.visibility = "visible"; 
 
 const enCardContent = document.querySelector("#en-card-content");
 let enCardSelected;   
-// SHOW CARD WHEN CLICKING - EVENT LISTENER AND FOREACH
-enCard.forEach((card) => {                  // looping through the enCard node list to add the click event listener
-    // include IF STATEMENT HERE? If the card is showing, flip it back over. 
-    // IF one EN card is already showing, stop event listener. 
-    card.addEventListener("click", (e) => {
-        console.log(e.target.id);
-        enCardSelected = e.target
-        showCard(enCardSelected)
-        console.log(enCardSelected.childNodes[0])
-        // enCardSelected.childNodes[0].style.visibility = "visible";
-        return enCardSelected;
-        // console.log(enCardSelected)
-        // // const enCardIDVar = document.querySelector(`#${enCard}`)
-        // enCardSelected.classList.add("unhide")
-    })
-})
+
 
 console.log(enCardContent)
 
@@ -187,13 +170,10 @@ newGameBtn.addEventListener("click", () => {
             arr[newPos] = temp // we will now place what we put into 'temp' into our array value with a new index number(position). Doing this in a loop means each value is swapped. 
             // include an update to HTML here so that card content updated as looping through?
         }
-        // enCardContainer.innerHTML += [i].createEnLanguageCard()
-        //     arr.forEach((card) => {
-        // enCardContainer.innerHTML += card.createEnLanguageCard(); 
         return arr;
     }               
 
-    newEnArray = arrayShuffle(enCardArr);// enCardArr is now shuffled - need to amend pics 
+    newEnArray = arrayShuffle(enCardArr);
     console.log(enCardArr)
 
     getCards();
@@ -204,6 +184,23 @@ newGameBtn.addEventListener("click", () => {
     //     return enCardArr;
     // })
     
+})
+
+//SETTING enCard variable to a node list of everything with class '.en-card'
+const enCard = document.querySelectorAll(".en-card");
+console.log(enCard);
+
+// SHOW CARD WHEN CLICKING - EVENT LISTENER AND FOREACH
+enCard.forEach((card) => {                  // looping through the enCard node list to add the click event listener
+    // include IF STATEMENT HERE? If the card is showing, flip it back over. 
+    // IF one EN card is already showing, stop event listener. 
+    card.addEventListener("click", (e) => {
+        console.log(e.target.id);
+        enCardSelected = e.target
+        showCard(enCardSelected)
+        console.log(enCardSelected.childNodes[0])
+        return enCardSelected;
+    })
 })
 
 // PT CARD ARRAY
@@ -217,6 +214,7 @@ ptCardArr.forEach((card) => {
 // OUTSTANDING ACTIONS
 // add "card" id to both encard and pt card then we can make shuffle happen to both sets of cards at once. 
 // amend timer - fix minus issue once alert is cleared. 
+//make cards show when clicked after new game has been selected/cards shuffled
 // create click event for cards
 // make cards flip back when they've been turned already. 
 // add audio files - work out how to target each card as they've been created em masse using a function. Could we add the button into each PtNounCard instead?
