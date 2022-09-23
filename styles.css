@@ -113,6 +113,14 @@ p {
     justify-content: center;
 }
 
+.btn {
+    border-radius: 5px;
+    font-family: "Caveat", sans-serif;
+    font-size: 2rem;
+    /* line-height: 3rem; */
+    width: auto;
+}
+
 #pair-btn {
     margin-right: 1%;
 }

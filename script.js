@@ -90,6 +90,22 @@ const ptTiger = new PtNounCard ("tigre (m)", "./images/tiger.png", 16);
 //     let enCard = new card(card.animal, card.imgSrc, card.audio)
 // })
 
+// AUDIO FUNCTION
+
+const audioBtnContent = document.querySelector("#test-audio").children[0]; //getting access to the audio element, which is the child of the button. 
+
+const audioBtn = document.querySelector("#test-audio");
+
+
+const playAudio = () => {
+    // const isPlaying = false;
+    audioBtnContent.play()
+} 
+
+audioBtn.addEventListener("click", (e) => {
+    playAudio()
+})
+
 // EN CARD ARRAY
 let enCardArr = [enDog, enCat, enRabbit, enChicken, enPig, enCow, enSheep, enHorse, enLion, enElephant, enMonkey, enBear, enMouse, enFrog, enWolf, enTiger]
     const getCards = () => {
@@ -112,7 +128,8 @@ getCards();
 // SHOW CARD FUNCTION
 const showCard = (cardEl) => cardEl.childNodes[0].style.visibility = "visible"; // with childNodes we can access children of element
 
-
+// //HIDE CARD FUNCTION
+// const hideCard = (cardEl) => cardEl.childNodes[0].style.visibility = "hidden";
 
 
 const enCardContent = document.querySelector("#en-card-content");
@@ -175,6 +192,7 @@ newGameBtn.addEventListener("click", () => {
 
     newEnArray = arrayShuffle(enCardArr);
     console.log(enCardArr)
+    // console.log(newEnArray)
 
     getCards();
 
@@ -215,9 +233,8 @@ ptCardArr.forEach((card) => {
 // add "card" id to both encard and pt card then we can make shuffle happen to both sets of cards at once. 
 // amend timer - fix minus issue once alert is cleared. 
 //make cards show when clicked after new game has been selected/cards shuffled
-// create click event for cards
-// make cards flip back when they've been turned already. 
-// add audio files - work out how to target each card as they've been created em masse using a function. Could we add the button into each PtNounCard instead?
+// make cards flip back when they've been turned already. Attempting to create hideCard() function. 
+// add audio files - work out how to target each card as they've been created en masse using a function. Could we add the button into each PtNounCard instead?
 // make design responsive
 // make shuffled cards show shuffled pictures too - could put them into a new array, where the function gets called? Could I create a function for the insertion of the html and then pass it as a second parameter in the click event for new game?
 /// make text flash different colours when time's up
