@@ -19,6 +19,7 @@ h1 {
 p {
     font-family: "Lemonada", sans-serif;
     font-size: 0.9rem;
+    padding: 50px 300px;
 }
 
 #game-container {
@@ -46,26 +47,6 @@ p {
     font-family: "Caveat", sans-serif;
 }
 
-@media screen and (max-width: 1250px) {
-    #en-card-container {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    p {
-        font-size: 0.8rem;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    #en-card-container {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    p {
-        font-size: 0.7rem;
-    }
-}
-
 #pt-card-container {
     /* border: 5px solid blue; */
     height: 100%;
@@ -81,12 +62,31 @@ p {
 @media screen and (max-width: 1250px) {
     #pt-card-container {
         grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 16.66% 16.66% 16.66% 16.66% 16.66% 16.66%;
+    }
+    #en-card-container {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 16.66% 16.66% 16.66% 16.66% 16.66% 16.66%;
+    }
+
+    p {
+        font-size: 0.8rem;
     }
 }
 
 @media screen and (max-width: 900px) {
     #pt-card-container {
         grid-template-columns: 1fr 1fr;
+        grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+    }
+
+    #en-card-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+    }
+
+    p {
+        font-size: 0.7rem;
     }
 }
 
@@ -129,7 +129,7 @@ p {
     margin-left: 1%;
 }
 
-#pt-card {
+.pt-card {
     /* background-color: aliceblue; */
     background-image: url("./images/brazilian-flag2.jpeg");
     background-size: 100% 100%;

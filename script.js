@@ -18,7 +18,12 @@ class EnNounCard {
     // below - change 'id' to 'data-id' once I've made the cards visible. 
 createEnLanguageCard() {
     const languageCard = `
-    <div class="en-card" id="british-${this.id}"><div id="en-card-content"><h2>${this.word}</h2> <img id="enImg" src="${this.picture}"></div></div>` 
+        <div class="en-card" id="british-${this.id}">
+            <div id="en-card-content">
+                <h2>${this.word}</h2> 
+                <img id="enImg" src="${this.picture}">
+            </div>
+        </div>` 
     return languageCard;
 }
 
@@ -28,11 +33,11 @@ createEnLanguageCard() {
 
 // PT CARD CLASS
 class PtNounCard {
-    constructor (word, picture, id, hint) {
+    constructor (word, picture, id, help) {
     this.word = word,
     this.picture = picture,
     this.id = id,
-    this.hint = hint
+    this.help = help
 }
 
 // playAudio() {
@@ -42,10 +47,27 @@ class PtNounCard {
 
 //PT CREATE LANGUAGE CARD METHOD
 createPtLanguageCard() {
-    const languageCard = `
-    <div id="pt-card">
-        <div id="pt-card-content"><h2>${this.word}</h2> <div id="pt-buttons"><button>HELP!</button> <button>AUDIO</button></div></div>
+    let languageCard = `
+    <div class="pt-card" id="pt-${this.id}">
+        <div id="pt-card-content">
+            <h2>${this.word}</h2> 
+            <div id="pt-buttons">
+                <button id="help">HELP!</button> 
+                <button>AUDIO</button>
+            </div>
+        </div>
     </div>`
+    return languageCard;
+}
+
+showHelpingSentence() {
+    let languageCard = `
+        <div class="pt-card">
+            <div id="pt-card-content">
+                <h2>${this.help}</h2> 
+                <button id="return">RETURN</button> 
+            </div>
+        </div>`
     return languageCard;
 }
 
@@ -69,33 +91,31 @@ const enFrog = new EnNounCard ("frog", "./images/frog.png", 14);
 const enWolf = new EnNounCard ("wolf", "./images/wolf.png", 15);
 const enTiger = new EnNounCard ("tiger", "./images/tiger.png", 16);
 
-const ptDog = new PtNounCard ("cachorro (m)", "./images/dog.png", 1)
-const ptCat = new PtNounCard ("gato (m)", "./images/cat.webp", 2)
-const ptRabbit = new PtNounCard ("coelho (m)", "./images/rabbit.png", 3)
-const ptChicken = new PtNounCard ("galinha (f)", "./images/chicken.png", 4)
-const ptPig = new PtNounCard ("porco (m)", "./images/pig.png", 5);
-const ptCow = new PtNounCard ("vaca (f)", "./images/cow.png", 6);
-const ptSheep = new PtNounCard ("ovelha (f)", "./images/sheep.png", 7);
-const ptHorse = new PtNounCard ("cavalo (m)", "./images/horse.png", 8);
-const ptLion = new PtNounCard ("leão (m)", "./images/lion.png", 9);
-const ptElephant = new PtNounCard ("elefante (m)", "./images/elephant.png", 10);
-const ptMonkey = new PtNounCard ("macaco (m)", "./images/monkey.png", 11);
-const ptBear = new PtNounCard ("urso (m)", "./images/bear.png", 12);
-const ptMouse = new PtNounCard ("rato (m)", "./images/mouse.png", 13);
-const ptFrog = new PtNounCard ("sapo (m)", "./images/frog.png", 14);
-const ptWolf = new PtNounCard ("lobo (m)", "./images/wolf.png", 15);
-const ptTiger = new PtNounCard ("tigre (m)", "./images/tiger.png", 16);
+const ptDog = new PtNounCard ("cachorro (m)", "./images/dog.png", 1, "Ela ganhou um cão de Natal.")
+const ptCat = new PtNounCard ("gato (m)", "./images/cat.webp", 2, "Minha tia tem um gato preto.")
+const ptRabbit = new PtNounCard ("coelho (m)", "./images/rabbit.png", 3, "Os colelhos estão comendo as verduras da minha horta.")
+const ptChicken = new PtNounCard ("galinha (f)", "./images/chicken.png", 4, "Havia três galinhas correndo pela fazenda.")
+const ptPig = new PtNounCard ("porco (m)", "./images/pig.png", 5, "Porcos adoram rolar na lama");
+const ptCow = new PtNounCard ("vaca (f)", "./images/cow.png", 6, "Vaca é um grande animal que é criada em fazendas para o consumo de leite.");
+const ptSheep = new PtNounCard ("ovelha (f)", "./images/sheep.png", 7, "As ovelhas são criadas pora o consumo da sua lã ou da sua carne.");
+const ptHorse = new PtNounCard ("cavalo (m)", "./images/horse.png", 8, "Muitos vaqueiros andavam a cavalo.");
+const ptLion = new PtNounCard ("leão (m)", "./images/lion.png", 9, "Dizem que o leão é o rei da selva.");
+const ptElephant = new PtNounCard ("elefante (m)", "./images/elephant.png", 10, "Os elefantes têm um nariz comprido e flexível chamado tromba.");
+const ptMonkey = new PtNounCard ("macaco (m)", "./images/monkey.png", 11, "Há um monte de tipos de macacos na África.");
+const ptBear = new PtNounCard ("urso (m)", "./images/bear.png", 12, "Se você ver um urso, é importante não fugir rapidamente.");
+const ptMouse = new PtNounCard ("rato (m)", "./images/mouse.png", 13, "O gato perseguiu o rato.");
+const ptFrog = new PtNounCard ("sapo (m)", "./images/frog.png", 14, "Eu costumava ir até o lago e brincar com os sapos.");
+const ptWolf = new PtNounCard ("lobo (m)", "./images/wolf.png", 15, "O lobo uivou para a lua.");
+const ptTiger = new PtNounCard ("tigre (m)", "./images/tiger.png", 16, "Os tigres têm listras laranjas e pretas.");
 
 // Array.forEach(card => {
 //     let enCard = new card(card.animal, card.imgSrc, card.audio)
 // })
 
 // AUDIO FUNCTION
-
 const audioBtnContent = document.querySelector("#test-audio").children[0]; //getting access to the audio element, which is the child of the button. 
 
 const audioBtn = document.querySelector("#test-audio");
-
 
 const playAudio = () => {
     // const isPlaying = false;
@@ -106,21 +126,40 @@ audioBtn.addEventListener("click", () => {
     playAudio()
 })
 
+
+
+
 // EN CARD ARRAY
 let enCardArr = [enDog, enCat, enRabbit, enChicken, enPig, enCow, enSheep, enHorse, enLion, enElephant, enMonkey, enBear, enMouse, enFrog, enWolf, enTiger]
-    const getEnCards = () => {
+
+//GET EN CARDS FUNCTION
+const getEnCards = () => {
     enCardContainer.innerHTML = "";
     enCardArr.forEach((card) => {
-    enCardContainer.innerHTML += card.createEnLanguageCard();
-
-    return enCardArr;
-    // to make the pics shuffle too, could copy the above foreach and get it to run after cards shuffled so html amended again. Could turn into a function so that there is less code. 
-
-    
-});
-    };
+        enCardContainer.innerHTML += card.createEnLanguageCard();
+        return enCardArr;
+    });
+};
 
 getEnCards();
+
+
+
+
+// PT CARD ARRAY
+const ptCardArr = [ptDog, ptCat, ptRabbit, ptChicken, ptPig, ptCow, ptSheep, ptHorse, ptLion, ptElephant, ptMonkey, ptBear, ptMouse, ptFrog, ptWolf, ptTiger]
+
+const getPtCards = () => {
+    ptCardContainer.innerHTML = "";
+    ptCardArr.forEach((card) => {
+        ptCardContainer.innerHTML += card.createPtLanguageCard();
+        return ptCardArr;
+    });
+};
+
+getPtCards();
+
+
 
 
 
@@ -138,6 +177,10 @@ let enCardSelected;
 
 console.log(enCardContent)
 
+
+
+
+
 //TIMER
 //setinterval function
 //clearinterval function
@@ -152,28 +195,50 @@ const timerMins = document.querySelector("#timer-mins");
 const zeroSecond = document.querySelector("#zero-second")
 const newGameBtn = document.querySelector("#new-game-btn");
 
+const myIntervalTimer = () => {
+    setInterval(function myTimer() {
+        if (seconds === 0) {            // reducing the minutes by 1 when seconds gets to 0. 
+            minutes = minutes - 1  // not 100% sure why this can't be minutes--?
+            timerMins.innerHTML = `${minutes}`
+            seconds = 60            //replenishing seconds to 60
+        }
+        --seconds                 // seconds countdown by x1 every time function run (every second)
+        timerSeconds.innerHTML = `${seconds}`;
+        if (seconds < 10) {
+            zeroSecond.innerHTML = "0";
+        }
+        if (seconds >= 10) {
+            zeroSecond.innerHTML = "";
+        }
+        if (seconds === 0 && minutes === 0) {
+            clearInterval(myTimer);      // stops timer when secs and mins on 0
+            // alert("Times Up!")
+            timer.innerHTML = `<p id="times-up" style="text-align:center;color:#ffa500;font-size=5rem;">Time's up!</p>`
+        }
+    }, 1000)
+}
+
+// const resetTimer = () => {
+//     seconds = 0;
+//     minutes = 4;
+//     clearInterval(myTimer)
+// }
+
+
+
+
+
 // NEW GAME BUTTON EVENT LISTENER
 newGameBtn.addEventListener("click", () => {
-    setInterval(function myTimer() {
-    if (seconds === 0) {            // reducing the minutes by 1 when seconds gets to 0. 
-        minutes = minutes - 1  // not 100% sure why this can't be minutes--?
-        timerMins.innerHTML = `${minutes}`
-        seconds = 60            //replenishing seconds to 60
+    if (timerMins === 4) {
+        myIntervalTimer()
     }
-    seconds--                   // seconds countdown by x1 every time function run (every second)
-    timerSeconds.innerHTML = seconds;
-    if (seconds < 10) {
-        zeroSecond.innerHTML = "0";
-    }
-    if (seconds >= 10) {
-        zeroSecond.innerHTML = "";
-    }
-    if (seconds === 0 && minutes === 0) {
-        clearInterval(myTimer);      // stops timer when secs and mins on 0
-        // alert("Times Up!")
-        timer.innerHTML = `<p style="text-align:center;color:#ffa500;">Time's up!</p>`
-    }
-}, 1000) // setInterval repeats a function at every given time-interval. first parameter is the function, second is the time in milliseconds. 
+    else {
+        // resetTimer()
+        seconds = 0;
+        minutes = 4;
+        myIntervalTimer()
+    } // setInterval repeats a function at every given time-interval. first parameter is the function, second is the time in milliseconds. 
 
 //SHUFFLE enCardArr (and later add on ptCardArr
     let arrayShuffle = function(arr) { // creating new arrayShuffle function. Parameter/placeholder 'arr'
@@ -194,17 +259,9 @@ newGameBtn.addEventListener("click", () => {
     newPtArray = arrayShuffle(ptCardArr);
     console.log(enCardArr)
     console.log(ptCardArr)
-    // console.log(newEnArray)
 
     getEnCards();
     getPtCards();
-
-
-    // updateEnCardHtml()
-    // enCardArr.forEach((card) => {
-    //     enCardContainer.innerHTML += card.createEnLanguageCard();
-    //     return enCardArr;
-    // })
     
 })
 
@@ -225,28 +282,41 @@ enCard.forEach((card) => {                  // looping through the enCard node l
     })
 })
 
-// PT CARD ARRAY
-const ptCardArr = [ptDog, ptCat, ptRabbit, ptChicken, ptPig, ptCow, ptSheep, ptHorse, ptLion, ptElephant, ptMonkey, ptBear, ptMouse, ptFrog, ptWolf, ptTiger]
 
-    const getPtCards = () => {
-        ptCardContainer.innerHTML = "";
-        ptCardArr.forEach((card) => {
-        ptCardContainer.innerHTML += card.createPtLanguageCard();
-        return ptCardArr;
-});
-    };
 
-getPtCards();
+// GET HELP FOR PT CARDS
+const ptCard = document.querySelectorAll(".pt-card")
+console.log(ptCard)
+
+const help = document.querySelector("#help");
+console.log(help)
+
+ptCard.forEach((card) => {
+    console.log(card.childNodes[0])
+    // help.addEventListener("click", () => {
+    // ptCardContainer.innerHTML = card.showHelpingSentence();
+    // // need to put an event listener on the button, which is a child of pt-card, pt-card-content and pt-buttons
+    // })
+})
+
 
 // OUTSTANDING ACTIONS
-// add "card" id to both encard and pt card then we can make shuffle happen to both sets of cards at once. 
-// amend timer - fix minus issue once alert is cleared. 
+// TIMER - fix minus issue once alert is cleared. Allow timer to restart after time's up. Fix double speed on second click issue. 
 //make cards show when clicked after new game has been selected/cards shuffled
 // make cards flip back when they've been turned already. Attempting to create hideCard() function. 
 // add audio files - work out how to target each card as they've been created en masse using a function. Currently for the test button I already have the html written, however instead perhaps I could place the audio files within the class data and then amend the html that's written to include the button??Could we add the button into each PtNounCard instead?
-// make design responsive
-// make shuffled cards show shuffled pictures too - could put them into a new array, where the function gets called? Could I create a function for the insertion of the html and then pass it as a second parameter in the click event for new game?
-/// make text flash different colours when time's up
-// write example sentences
+/// make text flash different colours when time's up - use interval timer for this?
+// Vacchi to record audios
 // shuffle - seems to produce the same results if clicking quickly but leaving a second or two in between you get different results
 //complete readme - add wordreference to acknowledgements
+//work out why click event is no longer working to show EN cards. 
+
+
+//NEXT COMMIT - adding padding to paragraphs, adjusted card sizes when reducing screen size so all are uniform
+
+// let testertext = document.querySelector("#tester-text")
+
+// setInterval(function (timesUpInterval) {
+//     testertext.innerHTML = "TESTING ON";
+//     testertext.style.visibility = "hidden"
+// }, 500)
