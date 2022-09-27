@@ -100,7 +100,7 @@ p {
 #pt-card-content {
     display: flex;
     flex-direction: column;
-    /* visibility: hidden; */
+    visibility: hidden;
 }
 
 #en-card-content {
