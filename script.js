@@ -279,8 +279,12 @@ const getEnCards = () => {
     card.addEventListener("click", (e) => {
       console.log(e.target.id);
       enCardSelected = e.target;
-      showOrHideCard(enCardSelected);
-      console.log(enCardSelected.childNodes[1]);
+      if (enCardSelected.childNodes[1].style.visibility === "hidden") {
+        // showCard(enCardSelected);
+        enCardSelected.childNodes[1].style.visibility = "visible";
+      } else {
+        enCardSelected.childNodes[1].style.visibility = "hidden";
+      }
       return enCardSelected;
     });
   });
@@ -295,13 +299,13 @@ const getPtCards = () => {
 };
 
 // SHOW CARD FUNCTION
-const showOrHideCard = (cardEl) => {
-  console.log(cardEl.childNodes[1].style);
-  cardEl.childNodes[1].style.visibility = "visible"; // with childNodes we can access children of element
-};
+// const showCard = (cardEl) => {
+//   console.log(cardEl.childNodes[1].style);
+//   cardEl.childNodes[1].style.visibility = "visible";
+// };
 
 // //HIDE CARD FUNCTION
-// const hideCard = (cardEl) => cardEl.childNodes[1].style.visibility = "hidden";
+const hideCard = (cardEl) => (cardEl.childNodes[1].style.visibility = "hidden");
 
 const myIntervalTimer = () => {
   myInterval = setInterval(function myTimer() {
@@ -396,7 +400,7 @@ ptCard.forEach((card) => {
 });
 
 // OUTSTANDING ACTIONS
-// TIMER - fix minus issue once alert is cleared. Allow timer to restart after time's up. Fix double speed on second click issue.
+// TIMER - Allow timer to restart after time's up.
 //make cards show when clicked after new game has been selected/cards shuffled
 // make cards flip back when they've been turned already. Attempting to create hideCard() function.
 // add audio files - work out how to target each card as they've been created en masse using a function. Currently for the test button I already have the html written, however instead perhaps I could place the audio files within the class data and then amend the html that's written to include the button??Could we add the button into each PtNounCard instead?
