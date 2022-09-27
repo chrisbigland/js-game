@@ -1,41 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portuguese Pairs/Pares Portugeses</title>
     <script src="script.js" async defer></script>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <h1>🇧🇷Portuguese Pairs🇧🇷</h1>
-    <p>       
-    Match each English animal with its Portuguese counterpart by flipping over the cards. First hit 'new game' to start the timer. Click on a card from each pile to flip them over and, when you have found a pair, hit the 'I found a pair!' button. Otherwise click again to flip them back. <br> <br> If it's not a match then you lose a life (you have just three!). Premium members can also access help by clicking on the 'HELP! button for an example sentence to see the word in context as well as hearing the pronunciation via the 'AUDIO' button.
+    <p>
+      Match each English animal with its Portuguese counterpart by flipping over
+      the cards. First hit 'new game' to start the timer. Click on a card from
+      each pile to flip them over and, when you have found a pair, hit the 'I
+      found a pair!' button. Otherwise click again to flip them back. <br />
+      <br />
+      If it's not a match then you lose a life (you have just three!). Premium
+      members can also access help by clicking on the 'HELP! button for an
+      example sentence to see the word in context as well as hearing the
+      pronunciation via the 'AUDIO' button.
 
-    <br>
-    <br>
-    You have 4 minutes before the clock runs out.... Good luck! 🤞
+      <br />
+      <br />
+      You have 4 minutes before the clock runs out.... Good luck! 🤞
     </p>
 
     <p id="tester-text"></p>
 
-    <div id="gameBtns"><button id="pair-btn" class="btn">I found a pair!</button><button id="new-game-btn" class="btn">New game</button></div>
-    <button id="test-audio">Audio test button
-        <audio src="./audio-files/Gato - test.m4a"></audio>
+    <div id="gameBtns">
+      <button id="pair-btn" class="btn">I found a pair!</button
+      ><button id="new-game-btn" class="btn">New game</button>
+    </div>
+    <button id="test-audio">
+      Audio test button
+      <audio src="./audio-files/Gato - test.m4a"></audio>
     </button>
-    
+
     <main id="game-container">
-        <div id="en-card-container"></div>
-        <!-- <div id="middle-content"> -->
-            <h2 id="timer"><span id="timer-mins">04</span>:<span id="zero-second"></span><span id="timer-seconds">00</span></h2>
-            <!-- <div id="lives">
-                <img id="life-1" src="./images/heart.png" alt="life" width = "10%" height = "8%">
-                <img id="life-2" src="./images/heart.png" alt="life" width = "10%" height = "8%">
-                <img id="life-3" src="./images/heart.png" alt="life" width = "10%" height = "8%">
-            </div>   -->
-        <!-- </div> -->
-        <div id="pt-card-container"></div>
+      <div id="en-card-container"></div>
+      <div id="middle-content">
+        <h2 id="timer">
+          <span id="timer-mins">04</span>:<span id="zero-second"></span
+          ><span id="timer-seconds">00</span>
+        </h2>
+        <div id="lives">
+          <img id="life-1" src="./images/heart.png" alt="life" />
+          <img id="life-2" src="./images/heart.png" alt="life" />
+          <img id="life-3" src="./images/heart.png" alt="life" />
+        </div>
+      </div>
+      <div id="pt-card-container"></div>
     </main>
-</body>
+  </body>
 </html>

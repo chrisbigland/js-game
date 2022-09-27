@@ -47,16 +47,16 @@ class PtNounCard {
     return languageCard;
   }
 
-  showHelpingSentence() {
-    let languageCard = `
-          <div class="pt-card" id="pt-${this.id}">
-              <div id="pt-card-content">
-                  <h2>${this.help}</h2> 
-                  <button id="return">RETURN</button> 
-              </div>
-          </div>`;
-    return languageCard;
-  }
+  //   showHelpingSentence() {
+  //     let languageCard = `
+  //           <div class="pt-card" id="pt-${this.id}">
+  //               <div id="pt-card-content">
+  //                   <h2>${this.help}</h2>
+  //                   <button id="return">RETURN</button>
+  //               </div>
+  //           </div>`;
+  //     return languageCard;
+  //   }
 }
 
 //VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES
@@ -223,10 +223,12 @@ const audioBtnContent = document.querySelector("#test-audio").children[0]; //get
 const audioBtn = document.querySelector("#test-audio");
 
 const enCardContent = document.querySelector("#en-card-content");
-let enCardSelected;
 
-// let userChoicesArr = []; // limit to two items
-// let matchedChoices = [];
+let enCardSelected;
+let ptCardSelected;
+
+let userChoicesArr = []; // limit to two items
+let matchedChoices = []; //if they match then put them into an array
 
 // Array.forEach(card => {
 //     let enCard = new card(card.animal, card.imgSrc, card.audio)
@@ -243,9 +245,6 @@ const timerMins = document.querySelector("#timer-mins");
 const zeroSecond = document.querySelector("#zero-second");
 const newGameBtn = document.querySelector("#new-game-btn");
 let myInterval;
-
-const ptCard = document.querySelectorAll(".pt-card");
-console.log(ptCard);
 
 const help = document.querySelector("#help");
 console.log(help);
@@ -279,9 +278,12 @@ const getEnCards = () => {
     card.addEventListener("click", (e) => {
       console.log(e.target.id);
       enCardSelected = e.target;
+      console.log(enCardSelected);
       if (enCardSelected.childNodes[1].style.visibility === "hidden") {
         // showCard(enCardSelected);
         enCardSelected.childNodes[1].style.visibility = "visible";
+        userChoicesArr.push(enCardselected);
+        console.log(userChoicesArr);
       } else {
         enCardSelected.childNodes[1].style.visibility = "hidden";
       }
@@ -297,6 +299,25 @@ const getPtCards = () => {
     return ptCardArr;
   });
 };
+const ptCard = document.querySelectorAll(".pt-card");
+console.log(ptCard); // empty nodelist???
+
+ptCard.forEach((card) => {
+  // looping through the enCard node list to add the click event listener
+  // include IF STATEMENT HERE? If the card is showing, flip it back over.
+  // IF one EN card is already showing, stop event listener.
+  card.addEventListener("click", (e) => {
+    console.log(e.target.id);
+    ptCardSelected = e.target;
+    if (ptCardSelected.childNodes[1].style.visibility === "hidden") {
+      // showCard(enCardSelected);
+      ptCardSelected.childNodes[1].style.visibility = "visible";
+    } else {
+      ptCardSelected.childNodes[1].style.visibility = "hidden";
+    }
+    return ptCardSelected;
+  });
+});
 
 // SHOW CARD FUNCTION
 // const showCard = (cardEl) => {
@@ -305,7 +326,7 @@ const getPtCards = () => {
 // };
 
 // //HIDE CARD FUNCTION
-const hideCard = (cardEl) => (cardEl.childNodes[1].style.visibility = "hidden");
+// const hideCard = (cardEl) => (cardEl.childNodes[1].style.visibility = "hidden");
 
 const myIntervalTimer = () => {
   myInterval = setInterval(function myTimer() {
@@ -350,8 +371,12 @@ audioBtn.addEventListener("click", () => {
 newGameBtn.addEventListener("click", () => {
   if (timerMins === 4) {
     myIntervalTimer();
+  } else if (minutes === 0 && seconds === 0) {
+    minutes = 4;
+    timer.innerHTML = `${minutes}:${seconds}`;
+    clearInterval(myInterval);
+    myIntervalTimer();
   } else {
-    // resetTimer()
     seconds = 0;
     minutes = 4;
     clearInterval(myInterval);
@@ -388,29 +413,29 @@ newGameBtn.addEventListener("click", () => {
 getEnCards();
 getPtCards();
 
-console.log(enCardContent);
+console.log(ptCard);
+console.log(enCard);
 
 // GET HELP FOR PT CARDS
-ptCard.forEach((card) => {
-  console.log(card.childNodes[0].nextSibling.nextSibling);
-  // help.addEventListener("click", () => {
-  // ptCardContainer.innerHTML = card.showHelpingSentence();
-  // // need to put an event listener on the button, which is a child of pt-card, pt-card-content and pt-buttons
-  // })
-});
+// ptCard.forEach((card) => {
+//   console.log(card.childNodes[0].nextSibling.nextSibling);
+// help.addEventListener("click", () => {
+// ptCardContainer.innerHTML = card.showHelpingSentence();
+// // need to put an event listener on the button, which is a child of pt-card, pt-card-content and pt-buttons
+// })
+// });
 
 // OUTSTANDING ACTIONS
 // TIMER - Allow timer to restart after time's up.
-//make cards show when clicked after new game has been selected/cards shuffled
-// make cards flip back when they've been turned already. Attempting to create hideCard() function.
+// allow the picture to be clicked as well as the rest of the card when hiding cards - issue with either the word or the card picture dissappearing depending on where on the card you click.
 // add audio files - work out how to target each card as they've been created en masse using a function. Currently for the test button I already have the html written, however instead perhaps I could place the audio files within the class data and then amend the html that's written to include the button??Could we add the button into each PtNounCard instead?
 /// make text flash different colours when time's up - use interval timer for this?
 // Vacchi to record audios
+// work out why I can't add anything onto the userchoicearr - shows up as not defined when I select a card
 // shuffle - seems to produce the same results if clicking quickly but leaving a second or two in between you get different results
 //complete readme - add wordreference to acknowledgements
-//work out why click event is no longer working to show EN cards.
 
-//NEXT COMMIT - adding padding to paragraphs, adjusted card sizes when reducing screen size so all are uniform
+// 'found a pair' button - only allow it to be clicked when x1 en and x1 pt card have been selected.
 
 // let testertext = document.querySelector("#tester-text")
 
@@ -418,3 +443,5 @@ ptCard.forEach((card) => {
 //     testertext.innerHTML = "TESTING ON";
 //     testertext.style.visibility = "hidden"
 // }, 500)
+
+//next commit - created light h2 background and created game lives
