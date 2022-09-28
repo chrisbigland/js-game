@@ -253,6 +253,8 @@ console.log(help);
 const enCard = document.querySelectorAll(".en-card");
 console.log(enCard);
 
+let gameInPlayOrNot = false;
+
 //FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS
 // AUDIO FUNCTION
 const playAudio = () => {
@@ -272,23 +274,26 @@ const getEnCards = () => {
 
   // SHOW CARD WHEN CLICKING - EVENT LISTENER AND FOREACH
   enCard.forEach((card) => {
-    // looping through the enCard node list to add the click event listener
-    // include IF STATEMENT HERE? If the card is showing, flip it back over.
-    // IF one EN card is already showing, stop event listener.
-    card.addEventListener("click", (e) => {
-      console.log(e.target.id);
-      enCardSelected = e.target;
-      console.log(enCardSelected);
-      if (enCardSelected.childNodes[1].style.visibility === "hidden") {
-        // showCard(enCardSelected);
-        enCardSelected.childNodes[1].style.visibility = "visible";
-        userChoicesArr.push(enCardselected);
-        console.log(userChoicesArr);
-      } else {
-        enCardSelected.childNodes[1].style.visibility = "hidden";
-      }
-      return enCardSelected;
-    });
+    console.log(gameInPlayOrNot);
+    if (gameInPlayOrNot === true) {
+      // looping through the enCard node list to add the click event listener
+      // include IF STATEMENT HERE? If the card is showing, flip it back over.
+      // IF one EN card is already showing, stop event listener.
+      card.addEventListener("click", (e) => {
+        console.log(e.target.id);
+        enCardSelected = e.target;
+        console.log(enCardSelected);
+        if (enCardSelected.childNodes[1].style.visibility === "hidden") {
+          // showCard(enCardSelected);
+          enCardSelected.childNodes[1].style.visibility = "visible";
+          userChoicesArr.push(enCardselected);
+          console.log(userChoicesArr);
+        } else {
+          enCardSelected.childNodes[1].style.visibility = "hidden";
+        }
+        return enCardSelected;
+      });
+    }
   });
 };
 
@@ -347,9 +352,18 @@ const myIntervalTimer = () => {
     if (seconds === 0 && minutes === 0) {
       clearInterval(myTimer); // stops timer when secs and mins on 0
       // alert("Times Up!")
-      timer.innerHTML = `<p id="times-up" style="text-align:center;color:#ffa500;font-size=5rem;">Time's up!</p>`;
+      gameInPlayOrNot = false;
+      showTimesUp();
     }
   }, 1000);
+};
+
+const showTimesUp = () => {
+  timer.innerHTML = `<p id="times-up" style="text-align:center;color:#ffa500;font-size:5rem;">Time's up!</p>`;
+};
+
+const hideTimesUp = () => {
+  timer.innerHTML = `<h2 id="timer"><span id="timer-mins">${timerMins}</span>:<span id="zero-second"></span><span id="timer-seconds">${timerSeconds}</span></h2>`;
 };
 
 //TIMER
@@ -369,19 +383,23 @@ audioBtn.addEventListener("click", () => {
 
 // NEW GAME BUTTON EVENT LISTENER
 newGameBtn.addEventListener("click", () => {
+  gameInPlayOrNot = true;
+  console.log(gameInPlayOrNot);
   if (timerMins === 4) {
     myIntervalTimer();
-  } else if (minutes === 0 && seconds === 0) {
+  } else if (minutes === 0 && seconds === 0) { // (currently showing time's up)
     minutes = 4;
-    timer.innerHTML = `${minutes}:${seconds}`;
+    // timer.innerHTML = `${minutes}:${seconds}`;
+    hideTimesUp(); // should reset html to show time
     clearInterval(myInterval);
     myIntervalTimer();
-  } else {
+  } else {          // if game already in play
     seconds = 0;
     minutes = 4;
     clearInterval(myInterval);
     myIntervalTimer();
   } // setInterval repeats a function at every given time-interval. first parameter is the function, second is the time in milliseconds.
+  console.log(gameInPlayOrNot);
 
   //SHUFFLE enCardArr (and later add on ptCardArr
   let arrayShuffle = function (arr) {
@@ -431,6 +449,7 @@ console.log(enCard);
 // add audio files - work out how to target each card as they've been created en masse using a function. Currently for the test button I already have the html written, however instead perhaps I could place the audio files within the class data and then amend the html that's written to include the button??Could we add the button into each PtNounCard instead?
 /// make text flash different colours when time's up - use interval timer for this?
 // Vacchi to record audios
+// fix card layout with the lives.
 // work out why I can't add anything onto the userchoicearr - shows up as not defined when I select a card
 // shuffle - seems to produce the same results if clicking quickly but leaving a second or two in between you get different results
 //complete readme - add wordreference to acknowledgements
@@ -443,5 +462,3 @@ console.log(enCard);
 //     testertext.innerHTML = "TESTING ON";
 //     testertext.style.visibility = "hidden"
 // }, 500)
-
-//next commit - created light h2 background and created game lives
