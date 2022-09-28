@@ -239,6 +239,7 @@ let newEnArray = [];
 let seconds = 0;
 let minutes = 4;
 let oneEnCardShowing = false;
+let onePtCardShowing = false;
 
 const timer = document.querySelector("#timer");
 const timerSeconds = document.querySelector("#timer-seconds");
@@ -282,19 +283,20 @@ const getEnCards = () => {
         console.log(enCardSelected);
         // for loop to check through en cards. if more than 1 has the style 'visible', don't perform the next action (making cards visible on click)
         if (
-          oneEnCardShowing === false                    // if no EN cards are showing
+          oneEnCardShowing === false // if no EN cards are showing
         ) {
-          enCardSelected.childNodes[1].style.visibility = "visible";            //make the selected card show
+          enCardSelected.childNodes[1].style.visibility = "visible"; //make the selected card show
           console.log(`one en card is showing = ${oneEnCardShowing}`);
-          oneEnCardShowing = true;                                              //oneEnCardShowing var set to let us know it's now being shown
+          oneEnCardShowing = true; //oneEnCardShowing var set to let us know it's now being shown
           console.log(`one en card is showing = ${oneEnCardShowing}`);
           userChoicesArr.push(enCardselected);
           console.log(userChoicesArr);
-        } 
-        else if (enCardSelected.childNodes[1].style.visibility === "visible") {
-        enCardSelected.childNodes[1].style.visibility = "hidden"; //otherwise if selected card is showing then hide it and set oneEnCardShowing to false. 
-        oneEnCardShowing = false;
-        console.log(`one en card is showing = ${oneEnCardShowing}`);
+        } else if (
+          enCardSelected.childNodes[1].style.visibility === "visible"
+        ) {
+          enCardSelected.childNodes[1].style.visibility = "hidden"; //otherwise if selected card is showing then hide it and set oneEnCardShowing to false.
+          oneEnCardShowing = false;
+          console.log(`one en card is showing = ${oneEnCardShowing}`);
         }
         return enCardSelected;
       });
@@ -318,10 +320,14 @@ const getPtCards = () => {
         console.log(e.target.id);
         console.log(ptCardSelected);
         ptCardSelected = e.target;
-        if (ptCardSelected.childNodes[1].style.visibility === "hidden") {
+        if (onePtCardShowing === false) {
           ptCardSelected.childNodes[1].style.visibility = "visible";
-        } else {
+          onePtCardShowing = true;
+        } else if (
+          ptCardSelected.childNodes[1].style.visibility === "visible"
+        ) {
           ptCardSelected.childNodes[1].style.visibility = "hidden";
+          onePtCardShowing = false;
         }
         // if (e.target.id === "help") {
         //   help.addEventListener("click", () => {
@@ -333,6 +339,7 @@ const getPtCards = () => {
     }
   });
 };
+
 
 // SHOW CARD FUNCTION
 // const showCard = (cardEl) => {
@@ -443,15 +450,6 @@ newGameBtn.addEventListener("click", () => {
 getEnCards();
 getPtCards();
 
-// GET HELP FOR PT CARDS
-// ptCard.forEach((card) => {
-//   console.log(card.childNodes[0].nextSibling.nextSibling);
-// help.addEventListener("click", () => {
-// ptCardContainer.innerHTML = card.showHelpingSentence();
-// // need to put an event listener on the button, which is a child of pt-card, pt-card-content and pt-buttons
-// })
-// });
-
 // OUTSTANDING ACTIONS
 // TIMER - Allow timer to restart after time's up.
 // allow the picture to be clicked as well as the rest of the card when hiding cards - issue with either the word or the card picture dissappearing depending on where on the card you click.
@@ -459,12 +457,11 @@ getPtCards();
 //time's up overspills when screen is small
 /// make text flash different colours when time's up - use interval timer for this?
 // Vacchi to record audios
-// fix card layout with the lives.
 // work out why I can't add anything onto the userchoicearr - shows up as not defined when I select a card
 // shuffle - seems to produce the same results if clicking quickly but leaving a second or two in between you get different results
 //complete readme - add wordreference to acknowledgements
 //create dropdown menu for other vocab sets.
-// selected card array - if display is shown as visible then add to array. If it's set to hidden then remove from array. 
+// selected card array - if display is shown as visible then add to array. If it's set to hidden then remove from array.
 
 // 'found a pair' button - only allow it to be clicked when x1 en and x1 pt card have been selected.
 
