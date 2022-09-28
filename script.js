@@ -9,7 +9,7 @@ class EnNounCard {
   // below - change 'id' to 'data-id' once I've made the cards visible.
   createEnLanguageCard() {
     const languageCard = `
-          <div class="en-card" id="british-${this.id}">
+          <div class="en-card" id="cardnumber-${this.id}">
               <div id="en-card-content">
                   <h2>${this.word}</h2> 
                   <img id="enImg" src="${this.picture}">
@@ -35,11 +35,11 @@ class PtNounCard {
   //PT CREATE LANGUAGE CARD METHOD
   createPtLanguageCard() {
     let languageCard = `
-      <div class="pt-card" id="pt-${this.id}">
+      <div class="pt-card" id="cardnumber-${this.id}">
           <div id="pt-card-content">
               <h2>${this.word}</h2> 
               <div id="pt-buttons">
-                  <button id="help pt-${this.id}">HELP!</button> 
+                  <button id="help cardnumber-${this.id}">HELP!</button> 
                   <button>AUDIO</button>
               </div>
           </div>
@@ -250,6 +250,8 @@ let myInterval;
 const help = document.querySelector("#help");
 console.log(help);
 
+const submit = document.querySelector("#submit");
+
 //SETTING enCard variable to a node list of everything with class '.en-card'
 const enCard = document.querySelectorAll(".en-card");
 console.log(enCard);
@@ -280,23 +282,20 @@ const getEnCards = () => {
       card.addEventListener("click", (e) => {
         console.log(e.target.id);
         enCardSelected = e.target;
-        console.log(enCardSelected);
+        console.log(enCardSelected.id);
         // for loop to check through en cards. if more than 1 has the style 'visible', don't perform the next action (making cards visible on click)
         if (
           oneEnCardShowing === false // if no EN cards are showing
         ) {
           enCardSelected.childNodes[1].style.visibility = "visible"; //make the selected card show
-          console.log(`one en card is showing = ${oneEnCardShowing}`);
           oneEnCardShowing = true; //oneEnCardShowing var set to let us know it's now being shown
-          console.log(`one en card is showing = ${oneEnCardShowing}`);
-          userChoicesArr.push(enCardselected);
+          userChoicesArr.push(enCardselected.id);
           console.log(userChoicesArr);
         } else if (
           enCardSelected.childNodes[1].style.visibility === "visible"
         ) {
           enCardSelected.childNodes[1].style.visibility = "hidden"; //otherwise if selected card is showing then hide it and set oneEnCardShowing to false.
           oneEnCardShowing = false;
-          console.log(`one en card is showing = ${oneEnCardShowing}`);
         }
         return enCardSelected;
       });
@@ -339,7 +338,6 @@ const getPtCards = () => {
     }
   });
 };
-
 
 // SHOW CARD FUNCTION
 // const showCard = (cardEl) => {
@@ -401,6 +399,8 @@ audioBtn.addEventListener("click", () => {
 // NEW GAME BUTTON EVENT LISTENER
 newGameBtn.addEventListener("click", () => {
   gameInPlayOrNot = true;
+  oneEnCardShowing = false;
+  onePtCardShowing = false;
   console.log(`game is in play = ${gameInPlayOrNot}`);
   if (timerMins === 4) {
     myIntervalTimer();
@@ -446,12 +446,18 @@ newGameBtn.addEventListener("click", () => {
   getPtCards();
 });
 
+submit.addEventListener("click", (e) => {
+  alert(
+    "Please sign up to the premium version to access more vocabulary sets!"
+  );
+});
+
 //STARTING LOGIC
 getEnCards();
 getPtCards();
 
 // OUTSTANDING ACTIONS
-// TIMER - Allow timer to restart after time's up.
+// TIMER - Allow timer to restart after time's up. Time's up writing needs to be amended to fit screen.
 // allow the picture to be clicked as well as the rest of the card when hiding cards - issue with either the word or the card picture dissappearing depending on where on the card you click.
 // add audio files - work out how to target each card as they've been created en masse using a function. Currently for the test button I already have the html written, however instead perhaps I could place the audio files within the class data and then amend the html that's written to include the button??Could we add the button into each PtNounCard instead?
 //time's up overspills when screen is small
@@ -460,8 +466,8 @@ getPtCards();
 // work out why I can't add anything onto the userchoicearr - shows up as not defined when I select a card
 // shuffle - seems to produce the same results if clicking quickly but leaving a second or two in between you get different results
 //complete readme - add wordreference to acknowledgements
-//create dropdown menu for other vocab sets.
-// selected card array - if display is shown as visible then add to array. If it's set to hidden then remove from array.
+//create dropdown menu for other vocab sets. Click to say only for premium members?
+// selected card array - if display is shown as visible then add to array. If it's set to hidden then remove from array. if id of item 1 is the same as id of item 2 in array (should both be called e.g. cardnumber-1), then user is correct - otherwise lose a life.
 
 // 'found a pair' button - only allow it to be clicked when x1 en and x1 pt card have been selected.
 
