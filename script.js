@@ -258,6 +258,10 @@ console.log(enCard);
 
 let gameInPlayOrNot = false;
 
+const flipAud = document.querySelector("#flip-aud");
+const winAud = document.querySelector("#win-aud");
+const shuffleAud = document.querySelector("#shuffle-aud");
+
 //FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS
 // AUDIO FUNCTION
 const playAudio = () => {
@@ -289,6 +293,7 @@ const getEnCards = () => {
         ) {
           enCardSelected.childNodes[1].style.visibility = "visible"; //make the selected card show
           oneEnCardShowing = true; //oneEnCardShowing var set to let us know it's now being shown
+          flipAud.play();
           userChoicesArr.push(enCardselected.id);
           console.log(userChoicesArr);
         } else if (
@@ -296,6 +301,7 @@ const getEnCards = () => {
         ) {
           enCardSelected.childNodes[1].style.visibility = "hidden"; //otherwise if selected card is showing then hide it and set oneEnCardShowing to false.
           oneEnCardShowing = false;
+          flipAud.play();
         }
         return enCardSelected;
       });
@@ -322,11 +328,13 @@ const getPtCards = () => {
         if (onePtCardShowing === false) {
           ptCardSelected.childNodes[1].style.visibility = "visible";
           onePtCardShowing = true;
+          flipAud.play();
         } else if (
           ptCardSelected.childNodes[1].style.visibility === "visible"
         ) {
           ptCardSelected.childNodes[1].style.visibility = "hidden";
           onePtCardShowing = false;
+          flipAud.play();
         }
         // if (e.target.id === "help") {
         //   help.addEventListener("click", () => {
@@ -433,6 +441,7 @@ newGameBtn.addEventListener("click", () => {
       arr[i] = arr[newPos]; // now placing the new position number as an index number value on each array value
       arr[newPos] = temp; // we will now place what we put into 'temp' into our array value with a new index number(position). Doing this in a loop means each value is swapped.
       // include an update to HTML here so that card content updated as looping through?
+      shuffleAud.play();
     }
     return arr;
   };
@@ -465,9 +474,11 @@ getPtCards();
 // Vacchi to record audios
 // work out why I can't add anything onto the userchoicearr - shows up as not defined when I select a card
 // shuffle - seems to produce the same results if clicking quickly but leaving a second or two in between you get different results
-//complete readme - add wordreference to acknowledgements
+//complete readme - add wordreference to acknowledgements, notificationsounds.com and soundjay.com for sounds
 //create dropdown menu for other vocab sets. Click to say only for premium members?
-// selected card array - if display is shown as visible then add to array. If it's set to hidden then remove from array. if id of item 1 is the same as id of item 2 in array (should both be called e.g. cardnumber-1), then user is correct - otherwise lose a life.
+// selected card array - if display is shown as visible then add to array. If it's set to hidden then remove from array. if id of item 1 is the same as id of item 2 in array (should both be called e.g. cardnumber-1), then user is correct - otherwise lose a life. When winning - winning audio will play. 
+//change card background colour when selected so it appears card has been turned over.
+//make the dropdown look nicer. 
 
 // 'found a pair' button - only allow it to be clicked when x1 en and x1 pt card have been selected.
 
