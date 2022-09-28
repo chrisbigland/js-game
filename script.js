@@ -39,7 +39,7 @@ class PtNounCard {
           <div id="pt-card-content">
               <h2>${this.word}</h2> 
               <div id="pt-buttons">
-                  <button id="help">HELP!</button> 
+                  <button id="help pt-${this.id}">HELP!</button> 
                   <button>AUDIO</button>
               </div>
           </div>
@@ -47,16 +47,16 @@ class PtNounCard {
     return languageCard;
   }
 
-  //   showHelpingSentence() {
-  //     let languageCard = `
-  //           <div class="pt-card" id="pt-${this.id}">
-  //               <div id="pt-card-content">
-  //                   <h2>${this.help}</h2>
-  //                   <button id="return">RETURN</button>
-  //               </div>
-  //           </div>`;
-  //     return languageCard;
-  //   }
+  showHelpingSentence() {
+    let languageCard = `
+            <div class="pt-card" id="pt-${this.id}">
+                <div id="pt-card-content">
+                    <h2>${this.help}</h2>
+                    <button id="return">RETURN</button>
+                </div>
+            </div>`;
+    return languageCard;
+  }
 }
 
 //VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES
@@ -238,6 +238,7 @@ let newEnArray = [];
 
 let seconds = 0;
 let minutes = 4;
+let oneEnCardShowing = false;
 
 const timer = document.querySelector("#timer");
 const timerSeconds = document.querySelector("#timer-seconds");
@@ -245,7 +246,6 @@ const timerMins = document.querySelector("#timer-mins");
 const zeroSecond = document.querySelector("#zero-second");
 const newGameBtn = document.querySelector("#new-game-btn");
 let myInterval;
-
 const help = document.querySelector("#help");
 console.log(help);
 
@@ -274,22 +274,27 @@ const getEnCards = () => {
 
   // SHOW CARD WHEN CLICKING - EVENT LISTENER AND FOREACH
   enCard.forEach((card) => {
-    console.log(gameInPlayOrNot);
+    console.log(`game is in play = ${gameInPlayOrNot}`);
     if (gameInPlayOrNot === true) {
-      // looping through the enCard node list to add the click event listener
-      // include IF STATEMENT HERE? If the card is showing, flip it back over.
-      // IF one EN card is already showing, stop event listener.
       card.addEventListener("click", (e) => {
         console.log(e.target.id);
         enCardSelected = e.target;
         console.log(enCardSelected);
-        if (enCardSelected.childNodes[1].style.visibility === "hidden") {
-          // showCard(enCardSelected);
-          enCardSelected.childNodes[1].style.visibility = "visible";
+        // for loop to check through en cards. if more than 1 has the style 'visible', don't perform the next action (making cards visible on click)
+        if (
+          oneEnCardShowing === false                    // if no EN cards are showing
+        ) {
+          enCardSelected.childNodes[1].style.visibility = "visible";            //make the selected card show
+          console.log(`one en card is showing = ${oneEnCardShowing}`);
+          oneEnCardShowing = true;                                              //oneEnCardShowing var set to let us know it's now being shown
+          console.log(`one en card is showing = ${oneEnCardShowing}`);
           userChoicesArr.push(enCardselected);
           console.log(userChoicesArr);
-        } else {
-          enCardSelected.childNodes[1].style.visibility = "hidden";
+        } 
+        else if (enCardSelected.childNodes[1].style.visibility === "visible") {
+        enCardSelected.childNodes[1].style.visibility = "hidden"; //otherwise if selected card is showing then hide it and set oneEnCardShowing to false. 
+        oneEnCardShowing = false;
+        console.log(`one en card is showing = ${oneEnCardShowing}`);
         }
         return enCardSelected;
       });
@@ -303,26 +308,31 @@ const getPtCards = () => {
     ptCardContainer.innerHTML += card.createPtLanguageCard();
     return ptCardArr;
   });
-};
-const ptCard = document.querySelectorAll(".pt-card");
-console.log(ptCard); // empty nodelist???
 
-ptCard.forEach((card) => {
-  // looping through the enCard node list to add the click event listener
-  // include IF STATEMENT HERE? If the card is showing, flip it back over.
-  // IF one EN card is already showing, stop event listener.
-  card.addEventListener("click", (e) => {
-    console.log(e.target.id);
-    ptCardSelected = e.target;
-    if (ptCardSelected.childNodes[1].style.visibility === "hidden") {
-      // showCard(enCardSelected);
-      ptCardSelected.childNodes[1].style.visibility = "visible";
-    } else {
-      ptCardSelected.childNodes[1].style.visibility = "hidden";
+  const ptCard = document.querySelectorAll(".pt-card");
+  console.log(ptCard); // empty nodelist???
+
+  ptCard.forEach((card) => {
+    if (gameInPlayOrNot === true) {
+      card.addEventListener("click", (e) => {
+        console.log(e.target.id);
+        console.log(ptCardSelected);
+        ptCardSelected = e.target;
+        if (ptCardSelected.childNodes[1].style.visibility === "hidden") {
+          ptCardSelected.childNodes[1].style.visibility = "visible";
+        } else {
+          ptCardSelected.childNodes[1].style.visibility = "hidden";
+        }
+        // if (e.target.id === "help") {
+        //   help.addEventListener("click", () => {
+        //     showHelpingSentence();
+        //   });
+        // }
+        return ptCardSelected;
+      });
     }
-    return ptCardSelected;
   });
-});
+};
 
 // SHOW CARD FUNCTION
 // const showCard = (cardEl) => {
@@ -359,7 +369,7 @@ const myIntervalTimer = () => {
 };
 
 const showTimesUp = () => {
-  timer.innerHTML = `<p id="times-up" style="text-align:center;color:#ffa500;font-size:5rem;">Time's up!</p>`;
+  timer.innerHTML = `<p id="times-up" style="text-align:center;color:#ffa500;font-size:5em;">Time's up!</p>`;
 };
 
 const hideTimesUp = () => {
@@ -384,16 +394,18 @@ audioBtn.addEventListener("click", () => {
 // NEW GAME BUTTON EVENT LISTENER
 newGameBtn.addEventListener("click", () => {
   gameInPlayOrNot = true;
-  console.log(gameInPlayOrNot);
+  console.log(`game is in play = ${gameInPlayOrNot}`);
   if (timerMins === 4) {
     myIntervalTimer();
-  } else if (minutes === 0 && seconds === 0) { // (currently showing time's up)
+  } else if (minutes === 0 && seconds === 0) {
+    // (currently showing time's up)
     minutes = 4;
     // timer.innerHTML = `${minutes}:${seconds}`;
     hideTimesUp(); // should reset html to show time
     clearInterval(myInterval);
     myIntervalTimer();
-  } else {          // if game already in play
+  } else {
+    // if game already in play
     seconds = 0;
     minutes = 4;
     clearInterval(myInterval);
@@ -431,9 +443,6 @@ newGameBtn.addEventListener("click", () => {
 getEnCards();
 getPtCards();
 
-console.log(ptCard);
-console.log(enCard);
-
 // GET HELP FOR PT CARDS
 // ptCard.forEach((card) => {
 //   console.log(card.childNodes[0].nextSibling.nextSibling);
@@ -447,12 +456,15 @@ console.log(enCard);
 // TIMER - Allow timer to restart after time's up.
 // allow the picture to be clicked as well as the rest of the card when hiding cards - issue with either the word or the card picture dissappearing depending on where on the card you click.
 // add audio files - work out how to target each card as they've been created en masse using a function. Currently for the test button I already have the html written, however instead perhaps I could place the audio files within the class data and then amend the html that's written to include the button??Could we add the button into each PtNounCard instead?
+//time's up overspills when screen is small
 /// make text flash different colours when time's up - use interval timer for this?
 // Vacchi to record audios
 // fix card layout with the lives.
 // work out why I can't add anything onto the userchoicearr - shows up as not defined when I select a card
 // shuffle - seems to produce the same results if clicking quickly but leaving a second or two in between you get different results
 //complete readme - add wordreference to acknowledgements
+//create dropdown menu for other vocab sets.
+// selected card array - if display is shown as visible then add to array. If it's set to hidden then remove from array. 
 
 // 'found a pair' button - only allow it to be clicked when x1 en and x1 pt card have been selected.
 

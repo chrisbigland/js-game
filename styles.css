@@ -23,8 +23,8 @@ p {
 }
 
 #game-container {
-    display: flex;
-    justify-content: space-;
+     display: flex;
+    /* justify-content: space-between; */ 
     height: 90vh;
     width: 100vw;
 }
@@ -100,7 +100,7 @@ p {
 #pt-card-content {
     display: flex;
     flex-direction: column;
-    /* visibility: hidden; */
+    visibility: hidden;
 }
 
 #en-card-content {
@@ -182,22 +182,21 @@ p {
 #middle-content {
     display: flex;
     flex-direction:column;
-
-
     align-items: center;
+    width: 20%;
 }
 
 #life-1 {
-    width:30%;
-    height: 25%;
+    width: 50px;
+    height: 50px;
 }
 
 #life-2 {
-    width:30%;
-    height: 25%;
+    width: 50px;
+    height: 50px
 }
 
 #life-3 {
-    width:30%;
-    height: 25%;
+    width: 50px;
+    height: 50px;
 }
