@@ -262,10 +262,13 @@ let gameInPlayOrNot = false;
 const flipAud = document.querySelector("#flip-aud");
 const winAud = document.querySelector("#win-aud");
 const shuffleAud = document.querySelector("#shuffle-aud");
-const rightansw = document.querySelector("#right-answ");
-
+const rightAnsw = document.querySelector("#right-answ");
+const wrongAnsw = document.querySelector("#wrong-answ");
 
 const pairBtn = document.querySelector("#pair-btn");
+const lifeOne = document.querySelector("#life-1");
+const lifeTwo = document.querySelector("#life-2");
+const lifeThree = document.querySelector("#life-3");
 
 //FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS
 // AUDIO FUNCTION
@@ -437,13 +440,17 @@ const doCardsMatch = () => {
       // alert("It's a match!")
       enCardSelected.innerHTML = `<h2 style="color:orange;text-align:center;background-color:white;opacity:0.8;">PAIRED OFF ✅</h2>`;
       ptCardSelected.innerHTML = `<h2 style="color:orange;text-align:center;background-color:white;opacity:0.8;">PAIRED OFF ✅</h2>`;
-      rightansw.play()
+      rightAnsw.play();
       enCardSelected = "";
       ptCardSelected = "";
       cardsMatch = true;
+    } else {
+      wrongAnsw.play();
+      lifeOne.style.visibility = "hidden";
+      alert("it's not a match");
     }
   } else {
-    alert(`please ensure you've selected one of each language card`);
+    alert(`Please ensure you've selected one of each language card`);
   }
 
   console.log(cardsMatch);
