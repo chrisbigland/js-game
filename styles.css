@@ -35,6 +35,16 @@ p {
 
 }
 
+#times-up {
+    text-align: center;
+    color: #ffa500;
+    font-size:1.2em;
+}
+
+#vocab-list {
+    font-family: "Lemonada", sans-serif;
+}
+
 #en-card-container {
     /* border: 5px solid red; */
     height: 100%;
@@ -71,6 +81,15 @@ p {
 
     p {
         font-size: 0.8rem;
+        padding: 35px 150px;
+    }
+
+    #timer {
+        font-size: 2.5rem;
+    }
+
+    #lives-title {
+        font-size: 1em;
     }
 }
 
@@ -87,6 +106,15 @@ p {
 
     p {
         font-size: 0.7rem;
+        padding: 20px 100px;
+    }
+
+    #timer {
+        font-size: 2rem;
+    }
+
+    #lives-title {
+        font-size: 2rem;
     }
 }
 
@@ -115,10 +143,14 @@ p {
 
 .btn {
     border-radius: 5px;
-    font-family: "Caveat", sans-serif;
-    font-size: 2rem;
+    font-family: "Lemonada", sans-serif;
+    font-size: 1.2rem;
     /* line-height: 3rem; */
     width: auto;
+}
+
+label {
+    font-family: "Lemonada", sans-serif;
 }
 
 #pair-btn {
@@ -161,6 +193,8 @@ p {
     font-family: "Caveat", sans-serif;
     font-size: 5rem;
 }
+
+
 
 .en-card {
     /* background-color: aliceblue;    */

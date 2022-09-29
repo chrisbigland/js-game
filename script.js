@@ -284,22 +284,28 @@ const getEnCards = () => {
     console.log(`game is in play = ${gameInPlayOrNot}`);
     if (gameInPlayOrNot === true) {
       card.addEventListener("click", (e) => {
-        console.log(e.target.id);
+        console.log(e.target);
         enCardSelected = e.target;
-        console.log(enCardSelected.id);
+        console.log({ enCardSelected });
         // for loop to check through en cards. if more than 1 has the style 'visible', don't perform the next action (making cards visible on click)
+        // if (e.target.id === "enImg") {
+        //   e.target.parentElement.style.visibility = "hidden";
+        // }
         if (
           oneEnCardShowing === false // if no EN cards are showing
         ) {
           enCardSelected.childNodes[1].style.visibility = "visible"; //make the selected card show
           oneEnCardShowing = true; //oneEnCardShowing var set to let us know it's now being shown
           flipAud.play();
-          userChoicesArr.push(enCardselected.id);
+          userChoicesArr.push(enCardSelected.id);
           console.log(userChoicesArr);
         } else if (
           enCardSelected.childNodes[1].style.visibility === "visible"
         ) {
+          console.log(enCardSelected);
           enCardSelected.childNodes[1].style.visibility = "hidden"; //otherwise if selected card is showing then hide it and set oneEnCardShowing to false.
+          console.log(e.target.id);
+          console.log(enCardSelected.childNodes[1].style.visibility);
           oneEnCardShowing = false;
           flipAud.play();
         }
@@ -317,14 +323,17 @@ const getPtCards = () => {
   });
 
   const ptCard = document.querySelectorAll(".pt-card");
-  console.log(ptCard); // empty nodelist???
 
   ptCard.forEach((card) => {
     if (gameInPlayOrNot === true) {
       card.addEventListener("click", (e) => {
-        console.log(e.target.id);
-        console.log(ptCardSelected);
+        // TALK ABOUT
+        if (ptCardSelected) {
+          return;
+        }
+
         ptCardSelected = e.target;
+
         if (onePtCardShowing === false) {
           ptCardSelected.childNodes[1].style.visibility = "visible";
           onePtCardShowing = true;
@@ -336,11 +345,7 @@ const getPtCards = () => {
           onePtCardShowing = false;
           flipAud.play();
         }
-        // if (e.target.id === "help") {
-        //   help.addEventListener("click", () => {
-        //     showHelpingSentence();
-        //   });
-        // }
+
         return ptCardSelected;
       });
     }
@@ -382,8 +387,10 @@ const myIntervalTimer = () => {
 };
 
 const showTimesUp = () => {
-  timer.innerHTML = `<p id="times-up" style="text-align:center;color:#ffa500;font-size:5em;">Time's up!</p>`;
+  timer.innerHTML = `<p id="times-up">Time's up!</p>`;
 };
+
+//
 
 const hideTimesUp = () => {
   timer.innerHTML = `<h2 id="timer"><span id="timer-mins">${timerMins}</span>:<span id="zero-second"></span><span id="timer-seconds">${timerSeconds}</span></h2>`;
@@ -476,9 +483,9 @@ getPtCards();
 // shuffle - seems to produce the same results if clicking quickly but leaving a second or two in between you get different results
 //complete readme - add wordreference to acknowledgements, notificationsounds.com and soundjay.com for sounds
 //create dropdown menu for other vocab sets. Click to say only for premium members?
-// selected card array - if display is shown as visible then add to array. If it's set to hidden then remove from array. if id of item 1 is the same as id of item 2 in array (should both be called e.g. cardnumber-1), then user is correct - otherwise lose a life. When winning - winning audio will play. 
+// selected card array - if display is shown as visible then add to array. If it's set to hidden then remove from array. if id of item 1 is the same as id of item 2 in array (should both be called e.g. cardnumber-1), then user is correct - otherwise lose a life. When winning - winning audio will play.
 //change card background colour when selected so it appears card has been turned over.
-//make the dropdown look nicer. 
+//make the dropdown look nicer.
 
 // 'found a pair' button - only allow it to be clicked when x1 en and x1 pt card have been selected.
 
