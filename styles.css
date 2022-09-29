@@ -147,6 +147,7 @@ p {
     font-size: 1.2rem;
     /* line-height: 3rem; */
     width: auto;
+    padding: 0.5%;
 }
 
 label {

@@ -37,10 +37,10 @@ class PtNounCard {
     let languageCard = `
       <div class="pt-card" id="cardnumber-${this.id}">
           <div id="pt-card-content">
-              <h2>${this.word}</h2> 
+              <h2 id="pt-word">${this.word}</h2> 
               <div id="pt-buttons">
                   <button id="help cardnumber-${this.id}">HELP!</button> 
-                  <button>AUDIO</button>
+                  <button id="audio-button">AUDIO</button>
               </div>
           </div>
       </div>`;
@@ -224,8 +224,8 @@ const audioBtn = document.querySelector("#test-audio");
 
 const enCardContent = document.querySelector("#en-card-content");
 
-let enCardSelected;
-let ptCardSelected;
+let enCardSelected = "";
+let ptCardSelected = "";
 
 let userChoicesArr = []; // limit to two items
 let matchedChoices = []; //if they match then put them into an array
@@ -240,6 +240,7 @@ let seconds = 0;
 let minutes = 4;
 let oneEnCardShowing = false;
 let onePtCardShowing = false;
+let cardsMatch = false;
 
 const timer = document.querySelector("#timer");
 const timerSeconds = document.querySelector("#timer-seconds");
@@ -261,6 +262,10 @@ let gameInPlayOrNot = false;
 const flipAud = document.querySelector("#flip-aud");
 const winAud = document.querySelector("#win-aud");
 const shuffleAud = document.querySelector("#shuffle-aud");
+const rightansw = document.querySelector("#right-answ");
+
+
+const pairBtn = document.querySelector("#pair-btn");
 
 //FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS
 // AUDIO FUNCTION
@@ -285,29 +290,34 @@ const getEnCards = () => {
     if (gameInPlayOrNot === true) {
       card.addEventListener("click", (e) => {
         console.log(e.target);
-        enCardSelected = e.target;
+        if (enCardSelected === "") {
+          enCardSelected = e.target;
+        }
+
         console.log({ enCardSelected });
         // for loop to check through en cards. if more than 1 has the style 'visible', don't perform the next action (making cards visible on click)
-        // if (e.target.id === "enImg") {
-        //   e.target.parentElement.style.visibility = "hidden";
-        // }
+        if (e.target.id === "enImg") {
+          e.target.parentElement.style.visibility = "hidden";
+          oneEnCardShowing = false;
+        }
         if (
           oneEnCardShowing === false // if no EN cards are showing
         ) {
-          enCardSelected.childNodes[1].style.visibility = "visible"; //make the selected card show
-          oneEnCardShowing = true; //oneEnCardShowing var set to let us know it's now being shown
+          enCardSelected.childNodes[1].style.visibility = "visible";
+          oneEnCardShowing = true;
           flipAud.play();
-          userChoicesArr.push(enCardSelected.id);
-          console.log(userChoicesArr);
-        } else if (
-          enCardSelected.childNodes[1].style.visibility === "visible"
-        ) {
-          console.log(enCardSelected);
-          enCardSelected.childNodes[1].style.visibility = "hidden"; //otherwise if selected card is showing then hide it and set oneEnCardShowing to false.
-          console.log(e.target.id);
-          console.log(enCardSelected.childNodes[1].style.visibility);
-          oneEnCardShowing = false;
-          flipAud.play();
+          //   userChoicesArr.push(enCardSelected.id);
+          //   console.log(userChoicesArr);
+          // } else if (
+          //   enCardSelected.childNodes[1].style.visibility === "visible"
+          // ) {
+          //   console.log(enCardSelected);
+          //   enCardSelected.childNodes[1].style.visibility = "hidden"; //otherwise if selected card is showing then hide it and set oneEnCardShowing to false.
+          //   console.log(e.target.id);
+          //   console.log(enCardSelected.childNodes[1].style.visibility);
+          //   oneEnCardShowing = false;
+          //   enCardSelected = "";
+          //   flipAud.play();
         }
         return enCardSelected;
       });
@@ -327,24 +337,39 @@ const getPtCards = () => {
   ptCard.forEach((card) => {
     if (gameInPlayOrNot === true) {
       card.addEventListener("click", (e) => {
-        // TALK ABOUT
-        if (ptCardSelected) {
-          return;
-        }
+        console.log(e.target.id);
+        // if (e.target.id === "pt-word") {
+        //   e.target.parentElement.style.visibility = "hidden";
+        //   onePtCardShowing = false;
+        // }
+        // if (e.target.id === "help" || e.target.id === "audio-button") {
+        //   e.target.parentElement.parentElement.style.visibility = "hidden";
+        //   onePtCardShowing = false;
+        // }
+        // if (e.target.id === "help" || e.target.id === "audio-button") {
+        //   e.target.parentElement.style.visibility = "hidden";
+        //   onePtCardShowing = false;
+        // }
 
-        ptCardSelected = e.target;
+        // if (ptCardSelected) {
+        //   return;
+        // }
+        if (ptCardSelected === "") {
+          ptCardSelected = e.target;
+        }
 
         if (onePtCardShowing === false) {
           ptCardSelected.childNodes[1].style.visibility = "visible";
           onePtCardShowing = true;
           flipAud.play();
-        } else if (
-          ptCardSelected.childNodes[1].style.visibility === "visible"
-        ) {
-          ptCardSelected.childNodes[1].style.visibility = "hidden";
-          onePtCardShowing = false;
-          flipAud.play();
         }
+        //else if (
+        //   ptCardSelected.childNodes[1].style.visibility === "visible"
+        // ) {
+        //   ptCardSelected.childNodes[1].style.visibility = "hidden";
+        //   onePtCardShowing = false;
+        //   flipAud.play();
+        // }
 
         return ptCardSelected;
       });
@@ -405,6 +430,25 @@ const hideTimesUp = () => {
 //     minutes = 4;
 //     clearInterval(myTimer)
 // }
+
+const doCardsMatch = () => {
+  if (oneEnCardShowing === true && onePtCardShowing === true) {
+    if (enCardSelected.id === ptCardSelected.id) {
+      // alert("It's a match!")
+      enCardSelected.innerHTML = `<h2 style="color:orange;text-align:center;background-color:white;opacity:0.8;">PAIRED OFF ✅</h2>`;
+      ptCardSelected.innerHTML = `<h2 style="color:orange;text-align:center;background-color:white;opacity:0.8;">PAIRED OFF ✅</h2>`;
+      rightansw.play()
+      enCardSelected = "";
+      ptCardSelected = "";
+      cardsMatch = true;
+    }
+  } else {
+    alert(`please ensure you've selected one of each language card`);
+  }
+
+  console.log(cardsMatch);
+  return cardsMatch;
+};
 
 //EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS
 audioBtn.addEventListener("click", () => {
@@ -468,6 +512,10 @@ submit.addEventListener("click", (e) => {
   );
 });
 
+pairBtn.addEventListener("click", (e) => {
+  doCardsMatch();
+});
+
 //STARTING LOGIC
 getEnCards();
 getPtCards();
@@ -481,17 +529,10 @@ getPtCards();
 // Vacchi to record audios
 // work out why I can't add anything onto the userchoicearr - shows up as not defined when I select a card
 // shuffle - seems to produce the same results if clicking quickly but leaving a second or two in between you get different results
-//complete readme - add wordreference to acknowledgements, notificationsounds.com and soundjay.com for sounds
+//complete readme - add wordreference to acknowledgements, notificationsounds.com and soundjay.com pixabay.com for sounds
 //create dropdown menu for other vocab sets. Click to say only for premium members?
 // selected card array - if display is shown as visible then add to array. If it's set to hidden then remove from array. if id of item 1 is the same as id of item 2 in array (should both be called e.g. cardnumber-1), then user is correct - otherwise lose a life. When winning - winning audio will play.
 //change card background colour when selected so it appears card has been turned over.
-//make the dropdown look nicer.
+// need to stop the variable en/ptCardSelected from updating if we click on another card even though the one we want is still showing.
 
 // 'found a pair' button - only allow it to be clicked when x1 en and x1 pt card have been selected.
-
-// let testertext = document.querySelector("#tester-text")
-
-// setInterval(function (timesUpInterval) {
-//     testertext.innerHTML = "TESTING ON";
-//     testertext.style.visibility = "hidden"
-// }, 500)
