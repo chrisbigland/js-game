@@ -241,6 +241,7 @@ let minutes = 4;
 let oneEnCardShowing = false;
 let onePtCardShowing = false;
 let cardsMatch = false;
+let livesArr = [3, 2, 1];
 
 const timer = document.querySelector("#timer");
 const timerSeconds = document.querySelector("#timer-seconds");
@@ -439,7 +440,6 @@ const doCardsMatch = () => {
   if (oneEnCardShowing === true && onePtCardShowing === true) {
     // will only run if two cards showing
     if (enCardSelected.id === ptCardSelected.id) {
-      // alert("It's a match!")
       enCardSelected.innerHTML = `<h2 style="color:orange;text-align:center;background-color:white;opacity:0.8;">PAIRED OFF ✅</h2>`;
       ptCardSelected.innerHTML = `<h2 style="color:orange;text-align:center;background-color:white;opacity:0.8;">PAIRED OFF ✅</h2>`;
       rightAnsw.play();
@@ -451,14 +451,25 @@ const doCardsMatch = () => {
       cardsMatch = true;
     } else {
       wrongAnsw.play();
-      lifeOne.style.visibility = "hidden";
+      if (livesArr.length === 3) {
+        lifeOne.style.visibility = "hidden";
+        alert("it's not a match");
+      } else if (livesArr.length === 2) {
+        lifeTwo.style.visibility = "hidden";
+        alert("it's not a match");
+      } else {
+        lifeThree.style.visibility = "hidden";
+        alert("Game Over");
+        clearInterval(myInterval);
+      }
       enCardSelected.childNodes[1].style.visibility = "hidden";
       ptCardSelected.childNodes[1].style.visibility = "hidden";
       enCardSelected = "";
       ptCardSelected = "";
       oneEnCardShowing = false;
       onePtCardShowing = false;
-      alert("it's not a match");
+      livesArr.shift();
+      console.log(livesArr);
     }
   } else if (gameInPlayOrNot === true) {
     alert("Please ensure you've selected one of each language card");
@@ -474,7 +485,6 @@ const doCardsNotMatch = () => {
   if (oneEnCardShowing === true && onePtCardShowing === true) {
     // will only run if two cards showing
     if (enCardSelected.id === ptCardSelected.id) {
-      // alert("It's a match!")
       enCardSelected.childNodes[1].style.visibility = "hidden";
       ptCardSelected.childNodes[1].style.visibility = "hidden";
       oneEnCardShowing = false;
@@ -483,6 +493,8 @@ const doCardsNotMatch = () => {
       lifeOne.style.visibility = "hidden";
       enCardSelected = "";
       ptCardSelected = "";
+      livesArr.shift();
+      console.log(livesArr);
       cardsMatch = true;
     } else {
       enCardSelected.childNodes[1].style.visibility = "hidden";
@@ -549,7 +561,10 @@ newGameBtn.addEventListener("click", () => {
   newPtArray = arrayShuffle(ptCardArr);
   console.log(enCardArr);
   console.log(ptCardArr);
-
+  if (livesArr.length < 3) {
+    livesArr = [3, 2, 1];
+  }
+  console.log(livesArr);
   getEnCards();
   getPtCards();
 });
