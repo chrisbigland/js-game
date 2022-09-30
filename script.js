@@ -490,7 +490,17 @@ const doCardsNotMatch = () => {
       oneEnCardShowing = false;
       onePtCardShowing = false;
       wrongAnsw.play();
-      lifeOne.style.visibility = "hidden";
+      if (livesArr.length === 3) {
+        lifeOne.style.visibility = "hidden";
+        alert("it was a match!");
+      } else if (livesArr.length === 2) {
+        lifeTwo.style.visibility = "hidden";
+        alert("it was a match!");
+      } else {
+        lifeThree.style.visibility = "hidden";
+        alert("Game Over");
+        clearInterval(myInterval);
+      }
       enCardSelected = "";
       ptCardSelected = "";
       livesArr.shift();
@@ -563,6 +573,9 @@ newGameBtn.addEventListener("click", () => {
   console.log(ptCardArr);
   if (livesArr.length < 3) {
     livesArr = [3, 2, 1];
+    lifeOne.style.visibility = "visible";
+    lifeTwo.style.visibility = "visible";
+    lifeThree.style.visibility = "visible";
   }
   console.log(livesArr);
   getEnCards();
