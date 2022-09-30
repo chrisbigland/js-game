@@ -266,6 +266,7 @@ const rightAnsw = document.querySelector("#right-answ");
 const wrongAnsw = document.querySelector("#wrong-answ");
 
 const pairBtn = document.querySelector("#pair-btn");
+const notPairBtn = document.querySelector("#not-pair-btn");
 const lifeOne = document.querySelector("#life-1");
 const lifeTwo = document.querySelector("#life-2");
 const lifeThree = document.querySelector("#life-3");
@@ -436,6 +437,7 @@ const hideTimesUp = () => {
 
 const doCardsMatch = () => {
   if (oneEnCardShowing === true && onePtCardShowing === true) {
+    // will only run if two cards showing
     if (enCardSelected.id === ptCardSelected.id) {
       // alert("It's a match!")
       enCardSelected.innerHTML = `<h2 style="color:orange;text-align:center;background-color:white;opacity:0.8;">PAIRED OFF ✅</h2>`;
@@ -443,11 +445,50 @@ const doCardsMatch = () => {
       rightAnsw.play();
       enCardSelected = "";
       ptCardSelected = "";
+      oneEnCardShowing = false;
+      onePtCardShowing = false;
+      matchedChoices.push("x1match");
       cardsMatch = true;
     } else {
       wrongAnsw.play();
       lifeOne.style.visibility = "hidden";
+      enCardSelected.childNodes[1].style.visibility = "hidden";
+      ptCardSelected.childNodes[1].style.visibility = "hidden";
+      enCardSelected = "";
+      ptCardSelected = "";
+      oneEnCardShowing = false;
+      onePtCardShowing = false;
       alert("it's not a match");
+    }
+  } else if (gameInPlayOrNot === true) {
+    alert("Please ensure you've selected one of each language card");
+  } else {
+    alert("Start the game by hitting the 'new game' button");
+  }
+
+  console.log(cardsMatch);
+  return cardsMatch;
+};
+
+const doCardsNotMatch = () => {
+  if (oneEnCardShowing === true && onePtCardShowing === true) {
+    // will only run if two cards showing
+    if (enCardSelected.id === ptCardSelected.id) {
+      // alert("It's a match!")
+      enCardSelected.childNodes[1].style.visibility = "hidden";
+      ptCardSelected.childNodes[1].style.visibility = "hidden";
+      oneEnCardShowing = false;
+      onePtCardShowing = false;
+      wrongAnsw.play();
+      lifeOne.style.visibility = "hidden";
+      enCardSelected = "";
+      ptCardSelected = "";
+      cardsMatch = true;
+    } else {
+      enCardSelected.childNodes[1].style.visibility = "hidden";
+      ptCardSelected.childNodes[1].style.visibility = "hidden";
+      oneEnCardShowing = false;
+      onePtCardShowing = false;
     }
   } else {
     alert(`Please ensure you've selected one of each language card`);
@@ -514,13 +555,15 @@ newGameBtn.addEventListener("click", () => {
 });
 
 submit.addEventListener("click", (e) => {
-  alert(
-    "Please sign up to the premium version to access more vocabulary sets!"
-  );
+  alert("This new vocabulary set is coming soon!");
 });
 
 pairBtn.addEventListener("click", (e) => {
   doCardsMatch();
+});
+
+notPairBtn.addEventListener("click", () => {
+  doCardsNotMatch();
 });
 
 //STARTING LOGIC
