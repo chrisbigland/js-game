@@ -48,14 +48,16 @@ class PtNounCard {
   }
 
   showHelpingSentence() {
-    let languageCard = `
+    // let languageCard =
+    console.log(`show helping sentence function has been activated`);
+    ptCardContainer.innerHTML = `
             <div class="pt-card" id="pt-${this.id}">
                 <div id="pt-card-content">
                     <h2>${this.help}</h2>
                     <button id="return">RETURN</button>
                 </div>
             </div>`;
-    return languageCard;
+    // return languageCard;
   }
 }
 
@@ -351,6 +353,10 @@ const getPtCards = () => {
         //   e.target.parentElement.parentElement.style.visibility = "hidden";
         //   onePtCardShowing = false;
         // }
+        if (e.target.id === "help") {
+          card.showHelpingSentence();
+          //   onePtCardShowing = false;
+        }
         // if (e.target.id === "help" || e.target.id === "audio-button") {
         //   e.target.parentElement.style.visibility = "hidden";
         //   onePtCardShowing = false;
@@ -388,9 +394,6 @@ const getPtCards = () => {
 //   cardEl.childNodes[1].style.visibility = "visible";
 // };
 
-// //HIDE CARD FUNCTION
-// const hideCard = (cardEl) => (cardEl.childNodes[1].style.visibility = "hidden");
-
 const myIntervalTimer = () => {
   myInterval = setInterval(function myTimer() {
     if (seconds === 0) {
@@ -408,8 +411,7 @@ const myIntervalTimer = () => {
       zeroSecond.innerHTML = "";
     }
     if (seconds === 0 && minutes === 0) {
-      clearInterval(myTimer); // stops timer when secs and mins on 0
-      // alert("Times Up!")
+      clearInterval(myTimer);
       gameInPlayOrNot = false;
       showTimesUp();
     }
@@ -420,21 +422,9 @@ const showTimesUp = () => {
   timer.innerHTML = `<p id="times-up">Time's up!</p>`;
 };
 
-//
-
 const hideTimesUp = () => {
   timer.innerHTML = `<h2 id="timer"><span id="timer-mins">${timerMins}</span>:<span id="zero-second"></span><span id="timer-seconds">${timerSeconds}</span></h2>`;
 };
-
-//TIMER
-//setinterval function
-//clearinterval function
-
-// const resetTimer = () => {
-//     seconds = 0;
-//     minutes = 4;
-//     clearInterval(myTimer)
-// }
 
 const doCardsMatch = () => {
   if (oneEnCardShowing === true && onePtCardShowing === true) {
