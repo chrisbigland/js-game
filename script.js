@@ -108,112 +108,112 @@ const ptDog = new PtNounCard(
   "./images/dog.png",
   1,
   "Ela ganhou um cão de Natal.",
-  "./audio-files/Cachorro - test.m4a"
+  "./audio-files/cachorro.m4a"
 );
 const ptCat = new PtNounCard(
   "gato (m)",
   "./images/cat.webp",
   2,
   "Minha tia tem um gato preto.",
-  "./audio-files/Gato - test.m4a"
+  "./audio-files/gato.m4a"
 );
 const ptRabbit = new PtNounCard(
   "coelho (m)",
   "./images/rabbit.png",
   3,
   "Os coelhos estão comendo as verduras da minha horta.",
-  "./audio-files/Gato - test.m4a"
+  "./audio-files/coelho.m4a"
 );
 const ptChicken = new PtNounCard(
   "galinha (f)",
   "./images/chicken.png",
   4,
   "Havia três galinhas correndo pela fazenda.",
-  "./audio-files/Gato - test.m4a"
+  "./audio-files/galinha.m4a"
 );
 const ptPig = new PtNounCard(
   "porco (m)",
   "./images/pig.png",
   5,
   "Porcos adoram rolar na lama",
-  "./audio-files/Gato - test.m4a"
+  "./audio-files/porco.m4a"
 );
 const ptCow = new PtNounCard(
   "vaca (f)",
   "./images/cow.png",
   6,
   "Vaca é um grande animal que é criada em fazendas para o consumo de leite.",
-  "./audio-files/Gato - test.m4a"
+  "./audio-files/vaca.m4a"
 );
 const ptSheep = new PtNounCard(
   "ovelha (f)",
   "./images/sheep.png",
   7,
   "As ovelhas são criadas pora o consumo da sua lã ou da sua carne.",
-  "./audio-files/Gato - test.m4a"
+  "./audio-files/ovelha.m4a"
 );
 const ptHorse = new PtNounCard(
   "cavalo (m)",
   "./images/horse.png",
   8,
   "Muitos vaqueiros andavam a cavalo.",
-  "./audio-files/Gato - test.m4a"
+  "./audio-files/cavalo.m4a"
 );
 const ptLion = new PtNounCard(
   "leão (m)",
   "./images/lion.png",
   9,
   "Dizem que o leão é o rei da selva.",
-  "./audio-files/Gato - test.m4a"
+  "./audio-files/leão.m4a"
 );
 const ptElephant = new PtNounCard(
   "elefante (m)",
   "./images/elephant.png",
   10,
   "Os elefantes têm um nariz comprido e flexível chamado tromba.",
-  "./audio-files/Gato - test.m4a"
+  "./audio-files/elefante.m4a"
 );
 const ptMonkey = new PtNounCard(
   "macaco (m)",
   "./images/monkey.png",
   11,
   "Há um monte de tipos de macacos na África.",
-  "./audio-files/Gato - test.m4a"
+  "./audio-files/macaco.m4a"
 );
 const ptBear = new PtNounCard(
   "urso (m)",
   "./images/bear.png",
   12,
   "Se você ver um urso, é importante não fugir rapidamente.",
-  "./audio-files/Gato - test.m4a"
+  "./audio-files/urso.m4a"
 );
 const ptMouse = new PtNounCard(
   "rato (m)",
   "./images/mouse.png",
   13,
   "O gato perseguiu o rato.",
-  "./audio-files/Gato - test.m4a"
+  "./audio-files/rato.m4a"
 );
 const ptFrog = new PtNounCard(
   "sapo (m)",
   "./images/frog.png",
   14,
   "Eu costumava ir até o lago e brincar com os sapos.",
-  "./audio-files/Gato - test.m4a"
+  "./audio-files/sapo.m4a"
 );
 const ptWolf = new PtNounCard(
   "lobo (m)",
   "./images/wolf.png",
   15,
   "O lobo uivou para a lua.",
-  "./audio-files/Gato - test.m4a"
+  "./audio-files/lobo.m4a"
 );
 const ptTiger = new PtNounCard(
   "tigre (m)",
   "./images/tiger.png",
   16,
   "Os tigres têm listras laranjas e pretas.",
-  "./audio-files/Gato - test.m4a"
+  "./audio-files/tigre.m4a"
 );
 
 const enCardContainer = document.querySelector("#en-card-container");
@@ -538,6 +538,10 @@ const doCardsMatch = () => {
       oneEnCardShowing = false;
       onePtCardShowing = false;
       matchedChoices.push("x1match");
+      if (matchedChoices.length === 1) {
+        winAud.play();
+        alert("Congratulations! You won!");
+      }
       cardsMatch = true;
     } else {
       if (livesArr.length === 3) {
@@ -585,12 +589,15 @@ const doCardsNotMatch = () => {
         lifeOne.style.visibility = "hidden";
         wrongAnswAud.play();
         alert("it was a match!");
+        ptCardSelected = "";
       } else if (livesArr.length === 2) {
         wrongAnswAud.play();
         lifeTwo.style.visibility = "hidden";
+        ptCardSelected = "";
         alert("it was a match!");
       } else {
         lifeThree.style.visibility = "hidden";
+        ptCardSelected = "";
         gameOverAud.play();
         alert("Game Over");
         clearInterval(myInterval);
@@ -603,6 +610,8 @@ const doCardsNotMatch = () => {
     } else {
       enCardSelected.childNodes[1].style.visibility = "hidden";
       ptCardSelected.childNodes[1].style.visibility = "hidden";
+      enCardSelected = "";
+      ptCardSelected = "";
       oneEnCardShowing = false;
       onePtCardShowing = false;
     }
@@ -622,6 +631,8 @@ audioBtn.addEventListener("click", () => {
 // NEW GAME BUTTON EVENT LISTENER
 newGameBtn.addEventListener("click", () => {
   gameInPlayOrNot = true;
+  enCardSelected = "";
+  ptCardSelected = "";
   oneEnCardShowing = false;
   onePtCardShowing = false;
   console.log(`game is in play = ${gameInPlayOrNot}`);
@@ -707,5 +718,7 @@ getPtCards();
 //change card background colour when selected so it appears card has been turned over.
 // CODE REFACTORING - could I merge returnCardContent() and createPtLanguageCard()?
 // need to stop the variable en/ptCardSelected from updating if we click on another card even though the one we want is still showing.
+//Ensure I can click on a card after clicking on 'paired off' card
 
 // 'found a pair' button - only allow it to be clicked when x1 en and x1 pt card have been selected.
+//rabbit pic overflows
