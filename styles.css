@@ -19,7 +19,8 @@ h1 {
 p {
     font-family: "Lemonada", sans-serif;
     font-size: 0.9rem;
-    padding: 50px 300px;
+    padding: 25px 300px;
+    text-align: center;
 }
 
 #game-container {
@@ -145,9 +146,17 @@ p {
     border-radius: 5px;
     font-family: "Lemonada", sans-serif;
     font-size: 1.2rem;
-    /* line-height: 3rem; */
     width: auto;
     padding: 0.5%;
+}
+
+#submit {
+        border-radius: 5px;
+        font-family: "Lemonada", sans-serif;
+        font-size: 0.6rem;
+        line-height: 0.8rem;
+        width: auto;
+        padding: 0.5%;
 }
 
 label {

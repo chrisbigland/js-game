@@ -9,7 +9,7 @@ class EnNounCard {
   // below - change 'id' to 'data-id' once I've made the cards visible.
   createEnLanguageCard() {
     const languageCard = `
-          <div class="en-card" id="cardnumber-${this.id}">
+          <div class="en-card" id="${this.id}">
               <div id="en-card-content">
                   <h2>${this.word}</h2> 
                   <img id="enImg" src="${this.picture}">
@@ -35,11 +35,11 @@ class PtNounCard {
   //PT CREATE LANGUAGE CARD METHOD
   createPtLanguageCard() {
     let languageCard = `
-      <div class="pt-card" id="cardnumber-${this.id}">
+      <div class="pt-card" id="${this.id}">
           <div id="pt-card-content">
               <h2 id="pt-word">${this.word}</h2> 
               <div id="pt-buttons">
-                  <button id="help cardnumber-${this.id}">HELP!</button> 
+                  <button id="help ${this.id}">HELP!</button> 
                   <button id="audio-button">AUDIO</button>
               </div>
           </div>
@@ -48,16 +48,13 @@ class PtNounCard {
   }
 
   showHelpingSentence() {
-    // let languageCard =
-    console.log(`show helping sentence function has been activated`);
-    ptCardContainer.innerHTML = `
-            <div class="pt-card" id="pt-${this.id}">
-                <div id="pt-card-content">
+    let helpingContent = `
+                <div id="pt-card-content pt-${this.id}">
                     <h2>${this.help}</h2>
                     <button id="return">RETURN</button>
                 </div>
             </div>`;
-    // return languageCard;
+    return helpingContent;
   }
 }
 
@@ -97,7 +94,7 @@ const ptRabbit = new PtNounCard(
   "coelho (m)",
   "./images/rabbit.png",
   3,
-  "Os colelhos estão comendo as verduras da minha horta."
+  "Os coelhos estão comendo as verduras da minha horta."
 );
 const ptChicken = new PtNounCard(
   "galinha (f)",
@@ -244,6 +241,7 @@ let oneEnCardShowing = false;
 let onePtCardShowing = false;
 let cardsMatch = false;
 let livesArr = [3, 2, 1];
+let ptVarForHelp;
 
 const timer = document.querySelector("#timer");
 const timerSeconds = document.querySelector("#timer-seconds");
@@ -265,8 +263,9 @@ let gameInPlayOrNot = false;
 const flipAud = document.querySelector("#flip-aud");
 const winAud = document.querySelector("#win-aud");
 const shuffleAud = document.querySelector("#shuffle-aud");
-const rightAnsw = document.querySelector("#right-answ");
-const wrongAnsw = document.querySelector("#wrong-answ");
+const rightAnswAud = document.querySelector("#right-answ-aud");
+const wrongAnswAud = document.querySelector("#wrong-answ-aud");
+const gameOverAud = document.querySelector("#game-over-aud");
 
 const pairBtn = document.querySelector("#pair-btn");
 const notPairBtn = document.querySelector("#not-pair-btn");
@@ -345,6 +344,27 @@ const getPtCards = () => {
     if (gameInPlayOrNot === true) {
       card.addEventListener("click", (e) => {
         console.log(e.target.id);
+        if (e.target.id.includes("help")) {
+          // performs action if clicking on help button
+          ptVarForHelp = e.target.id.slice(5); // variable set with id of the help button's card
+          console.log(ptVarForHelp);
+          //   ptCardArr.forEach((data) => {
+          //     if (ptVarForHelp == data.id) {
+          //       ptCardContainer.innerHTML = data.showHelpingSentence();
+          //     }
+          //   });
+          // loop through array of classes to find the helping sentence data
+          for (let i = 0; i < ptCardArr.length; i++) {
+            // console.log(i);
+            console.log(ptCardArr[i]);
+            if (ptVarForHelp == ptCardArr[i].id) {
+              //   console.log(card.childNodes[1]);
+              card.childNodes[1].innerHTML = ptCardArr[i].showHelpingSentence();
+              ptCardArr[i].childNodes[1].style.visibility = "visible";
+            }
+          }
+          return;
+        }
         // if (e.target.id === "pt-word") {
         //   e.target.parentElement.style.visibility = "hidden";
         //   onePtCardShowing = false;
@@ -353,10 +373,11 @@ const getPtCards = () => {
         //   e.target.parentElement.parentElement.style.visibility = "hidden";
         //   onePtCardShowing = false;
         // }
-        if (e.target.id === "help") {
-          card.showHelpingSentence();
-          //   onePtCardShowing = false;
-        }
+        // if (e.target.id === "help") {
+        //   showHelpingSentence();
+
+        //   onePtCardShowing = false;
+        // }
         // if (e.target.id === "help" || e.target.id === "audio-button") {
         //   e.target.parentElement.style.visibility = "hidden";
         //   onePtCardShowing = false;
@@ -432,7 +453,7 @@ const doCardsMatch = () => {
     if (enCardSelected.id === ptCardSelected.id) {
       enCardSelected.innerHTML = `<h2 style="color:orange;text-align:center;background-color:white;opacity:0.8;">PAIRED OFF ✅</h2>`;
       ptCardSelected.innerHTML = `<h2 style="color:orange;text-align:center;background-color:white;opacity:0.8;">PAIRED OFF ✅</h2>`;
-      rightAnsw.play();
+      rightAnswAud.play();
       enCardSelected = "";
       ptCardSelected = "";
       oneEnCardShowing = false;
@@ -440,15 +461,17 @@ const doCardsMatch = () => {
       matchedChoices.push("x1match");
       cardsMatch = true;
     } else {
-      wrongAnsw.play();
       if (livesArr.length === 3) {
         lifeOne.style.visibility = "hidden";
+        wrongAnswAud.play();
         alert("it's not a match");
       } else if (livesArr.length === 2) {
         lifeTwo.style.visibility = "hidden";
+        wrongAnswAud.play();
         alert("it's not a match");
       } else {
         lifeThree.style.visibility = "hidden";
+        gameOverAud.play();
         alert("Game Over");
         clearInterval(myInterval);
       }
@@ -479,15 +502,17 @@ const doCardsNotMatch = () => {
       ptCardSelected.childNodes[1].style.visibility = "hidden";
       oneEnCardShowing = false;
       onePtCardShowing = false;
-      wrongAnsw.play();
       if (livesArr.length === 3) {
         lifeOne.style.visibility = "hidden";
+        wrongAnswAud.play();
         alert("it was a match!");
       } else if (livesArr.length === 2) {
+        wrongAnswAud.play();
         lifeTwo.style.visibility = "hidden";
         alert("it was a match!");
       } else {
         lifeThree.style.visibility = "hidden";
+        gameOverAud.play();
         alert("Game Over");
         clearInterval(myInterval);
       }
