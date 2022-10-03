@@ -538,8 +538,9 @@ const doCardsMatch = () => {
       oneEnCardShowing = false;
       onePtCardShowing = false;
       matchedChoices.push("x1match");
-      if (matchedChoices.length === 1) {
+      if (matchedChoices.length === 16) {
         winAud.play();
+        clearInterval(myInterval);
         alert("Congratulations! You won!");
       }
       cardsMatch = true;
