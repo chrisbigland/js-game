@@ -3,7 +3,6 @@
 class EnNounCard {
   constructor(word, picture, id) {
     (this.word = word), (this.picture = picture), (this.id = id);
-    // this.audio = audio
   }
 
   // below - change 'id' to 'data-id' once I've made the cards visible.
@@ -28,10 +27,6 @@ class PtNounCard {
       (this.help = help),
       (this.audio = audio);
   }
-
-  // playAudio() {
-  //     // grab the audio tag -> then hit play/pause -> look into audio/video tag W3Schools - add in the following 'onclick' to the 'help' button below. <button onclick=${this.playAudio()}>
-  // }
 
   //PT CREATE LANGUAGE CARD METHOD
   createPtLanguageCard() {
@@ -78,7 +73,6 @@ class PtNounCard {
   playAudioFile() {
     console.log(`audio function activated`);
     let audioContent = `<audio id="pt-Audio" src="${this.audio}"></audio>`;
-    // console.log(audioContent);
     return audioContent;
   }
 }
@@ -259,7 +253,7 @@ const ptCardArr = [
   ptTiger,
 ];
 
-const audioBtnContent = document.querySelector("#test-audio").children[0]; //getting access to the audio element, which is the child of the button.
+const audioBtnContent = document.querySelector("#test-audio").children[0];
 const audioBtn = document.querySelector("#test-audio");
 
 const enCardContent = document.querySelector("#en-card-content");
@@ -355,18 +349,6 @@ const getEnCards = () => {
           enCardSelected.childNodes[1].style.visibility = "visible";
           oneEnCardShowing = true;
           flipAud.play();
-          //   userChoicesArr.push(enCardSelected.id);
-          //   console.log(userChoicesArr);
-          // } else if (
-          //   enCardSelected.childNodes[1].style.visibility === "visible"
-          // ) {
-          //   console.log(enCardSelected);
-          //   enCardSelected.childNodes[1].style.visibility = "hidden"; //otherwise if selected card is showing then hide it and set oneEnCardShowing to false.
-          //   console.log(e.target.id);
-          //   console.log(enCardSelected.childNodes[1].style.visibility);
-          //   oneEnCardShowing = false;
-          //   enCardSelected = "";
-          //   flipAud.play();
         }
         return enCardSelected;
       });
@@ -388,22 +370,12 @@ const getPtCards = () => {
       card.addEventListener("click", (e) => {
         console.log(e.target.id);
         if (e.target.id.includes("help")) {
-          // performs action if clicking on help button
           ptVarForHelp = e.target.id.slice(5); // variable set with id of the help button's card
           console.log(ptVarForHelp);
-          //   ptCardArr.forEach((data) => {
-          //     if (ptVarForHelp == data.id) {
-          //       ptCardContainer.innerHTML = data.showHelpingSentence();
-          //     }
-          //   });
-          // loop through array of classes to find the helping sentence data
           for (let i = 0; i < ptCardArr.length; i++) {
-            // console.log(i);
             console.log(ptCardArr[i]);
             if (ptVarForHelp == ptCardArr[i].id) {
-              //   console.log(card.childNodes[1]);
               card.childNodes[1].innerHTML = ptCardArr[i].showHelpingSentence();
-              //   ptCardArr[i].childNodes[1].style.visibility = "visible";
             }
           }
           return;
@@ -416,8 +388,6 @@ const getPtCards = () => {
             console.log(ptCardArr[i].id);
             if (ptVarForReturn == ptCardArr[i].id) {
               console.log(card.childNodes[1]);
-              //   getPtCards();
-
               card.childNodes[1].innerHTML = ptCardArr[i].returnCardContent(); // card.childNodes[1].innerHTML accesses the location where we want the HTML to be replaced. PtCardArr[i] identifies the card in the array we want to perform the function on - it will only be one as the action is only performed if the ids match.
               //   console.log(ptCardArr[i].childNodes[1].style.visibility);
               ptCardArr[i].childNodes[1].style.visibility = "visible";
@@ -430,7 +400,6 @@ const getPtCards = () => {
           console.log(e.target.id);
           ptVarForAudio = e.target.id.slice(13);
           console.log(ptVarForAudio);
-          //   playAudioFile()
 
           for (let i = 0; i < ptCardArr.length; i++) {
             if (ptVarForAudio == ptCardArr[i].id) {
@@ -438,7 +407,6 @@ const getPtCards = () => {
               ptAudios.innerHTML = ptCardArr[i].playAudioFile();
               let ptAudio = document.querySelector("#pt-Audio");
               ptAudio.play();
-              //   audioContent.play();
             }
           }
           return;
@@ -488,12 +456,6 @@ const getPtCards = () => {
   });
 };
 
-// SHOW CARD FUNCTION
-// const showCard = (cardEl) => {
-//   console.log(cardEl.childNodes[1].style);
-//   cardEl.childNodes[1].style.visibility = "visible";
-// };
-
 const myIntervalTimer = () => {
   myInterval = setInterval(function myTimer() {
     if (seconds === 0) {
@@ -519,10 +481,12 @@ const myIntervalTimer = () => {
 };
 
 const showTimesUp = () => {
+  console.log("time's up function activated");
   timer.innerHTML = `<p id="times-up">Time's up!</p>`;
 };
 
 const hideTimesUp = () => {
+  console.log(`time's up function activated`);
   timer.innerHTML = `<h2 id="timer"><span id="timer-mins">${timerMins}</span>:<span id="zero-second"></span><span id="timer-seconds">${timerSeconds}</span></h2>`;
 };
 
@@ -706,20 +670,12 @@ getPtCards();
 
 // OUTSTANDING ACTIONS
 // TIMER - Allow timer to restart after time's up. Time's up writing needs to be amended to fit screen.
-// allow the picture to be clicked as well as the rest of the card when hiding cards - issue with either the word or the card picture dissappearing depending on where on the card you click.
-// add audio files - work out how to target each card as they've been created en masse using a function. Currently for the test button I already have the html written, however instead perhaps I could place the audio files within the class data and then amend the html that's written to include the button??Could we add the button into each PtNounCard instead?
 //time's up overspills when screen is small
 /// make text flash different colours when time's up - use interval timer for this?
-// Vacchi to record audios
-// work out why I can't add anything onto the userchoicearr - shows up as not defined when I select a card
-// shuffle - seems to produce the same results if clicking quickly but leaving a second or two in between you get different results
-//complete readme - add wordreference to acknowledgements, notificationsounds.com and soundjay.com pixabay.com for sounds
-//create dropdown menu for other vocab sets. Click to say only for premium members?
-// selected card array - if display is shown as visible then add to array. If it's set to hidden then remove from array. if id of item 1 is the same as id of item 2 in array (should both be called e.g. cardnumber-1), then user is correct - otherwise lose a life. When winning - winning audio will play.
-//change card background colour when selected so it appears card has been turned over.
+//fix alignment for 'paired off' text.
 // CODE REFACTORING - could I merge returnCardContent() and createPtLanguageCard()?
-// need to stop the variable en/ptCardSelected from updating if we click on another card even though the one we want is still showing.
 //Ensure I can click on a card after clicking on 'paired off' card
-
-// 'found a pair' button - only allow it to be clicked when x1 en and x1 pt card have been selected.
-//rabbit pic overflows
+//rabbit pic overflows. Overspilling text for help - cow.
+// make cards 'data-id'
+// move new game button - too easy to click on
+// change paired off so it's centered
