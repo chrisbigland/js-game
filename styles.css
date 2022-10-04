@@ -1,28 +1,236 @@
-#game {
-    border: 4px solid blue;
-    height: 80vh;
-    width: 90vw;
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Lemonada&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("./images/rio-background.png");
+    background-size: 100% 100%;
 }
 
 h1 {
     text-align: center;
+    font-family: "Lemonada", sans-serif;
+}
+
+p {
+    font-family: "Lemonada", sans-serif;
+    font-size: 0.9rem;
+    padding: 25px 300px;
+    text-align: center;
 }
 
 #game-container {
+     display: flex;
+    height: 90vh;
+    width: 100vw;
+}
+
+#timer { 
+    font-family: "Lemonada", sans-serif;
+    font-size: 4rem;
+
+}
+
+#times-up {
+    text-align: center;
+    color: #ffa500;
+    font-size:1.2em;
+}
+
+#vocab-list {
+    font-family: "Lemonada", sans-serif;
+}
+
+#en-card-container {
+    height: 100%;
+    width: 40%;
+    font-size: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 25% 25% 25% 25%;
+    gap: 1%;
+    font-family: "Caveat", sans-serif;
+}
+
+#pt-card-container {
+    height: 100%;
+    width: 40%;
+    font-size: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 25% 25% 25% 25%;
+    gap: 1%;
+    
+}
+
+@media screen and (max-width: 1250px) {
+    #pt-card-container {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 16.66% 16.66% 16.66% 16.66% 16.66% 16.66%;
+    }
+    #en-card-container {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 16.66% 16.66% 16.66% 16.66% 16.66% 16.66%;
+    }
+
+    p {
+        font-size: 0.8rem;
+        padding: 35px 150px;
+    }
+
+    #timer {
+        font-size: 2.5rem;
+    }
+
+    #lives-title {
+        font-size: 1em;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #pt-card-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+    }
+
+    #en-card-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+    }
+
+    p {
+        font-size: 0.7rem;
+        padding: 20px 100px;
+    }
+
+    #timer {
+        font-size: 2rem;
+    }
+
+    #lives-title {
+        font-size: 2rem;
+    }
+}
+
+#pt-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+#pt-card-content {
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+}
+
+#en-card-content {
+    visibility: hidden;
+}
+
+#gameBtns {
     display: flex;
     justify-content: center;
 }
 
-#ball {
-    height: 3%;
-    width: 1.2%;
-    border-radius: 50%;
-    background-color: red;
-    position: relative;
+.btn {
+    border-radius: 5px;
+    font-family: "Lemonada", sans-serif;
+    font-size: 1.2rem;
+    width: auto;
+    padding: 0.5%;
 }
 
-#paddle {
-    height: 1%;
-    width: 2.5%;
-    background-color: green;
+#submit {
+        border-radius: 5px;
+        font-family: "Lemonada", sans-serif;
+        font-size: 0.6rem;
+        line-height: 0.8rem;
+        width: auto;
+        padding: 0.5%;
+}
+
+label {
+    font-family: "Lemonada", sans-serif;
+}
+
+#pair-btn {
+    margin-right: 1%;
+}
+
+#new-game-btn {
+    margin-left: 1%;
+}
+
+.pt-card {
+    background-image: url("./images/brazilian-flag2.jpeg");
+    background-size: 100% 100%;
+    border: 2px solid black;
+    text-align: center;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.pt-card h2 {
+    font-family: "Caveat", sans-serif;
+    border-radius: 5px;
+    font-weight: 900;
+    background-color: aliceblue;
+    opacity: .8;
+}
+
+.en-card h2 {
+    font-family: "Caveat", sans-serif;
+    border-radius: 5px;
+    font-weight: 900;
+    background-color: aliceblue;
+    opacity: .8;
+}
+
+#lives-title {
+    font-family: "Caveat", sans-serif;
+    font-size: 5rem;
+}
+
+.en-card {
+    background-image: url("./images/uk-flag.jpeg");
+    background-size: 100% 100%;
+    border: 2px solid black;
+    text-align: center;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+}
+
+#enImg {
+    width: 100%; 
+    height: 80%;
+    border-radius: 5px;
+}
+
+#middle-content {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    width: 20%;
+}
+
+#life-1 {
+    width: 50px;
+    height: 50px;
+}
+
+#life-2 {
+    width: 50px;
+    height: 50px
+}
+
+#life-3 {
+    width: 50px;
+    height: 50px;
 }

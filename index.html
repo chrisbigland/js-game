@@ -1,21 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portuguese Pairs/Pares Portugeses</title>
     <script src="script.js" async defer></script>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <h1>Block Breaker</h1>
-    <div id="game-container">
-        <div id="game">
-            <div id="ball"></div>
-                <div id="paddle"></div>
-        </div>
-        <button>Start Game</button>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>🇧🇷Portuguese Pairs🇧🇷</h1>
+    <p>
+      Match each English animal with its Portuguese counterpart by flipping over
+      the cards. First hit 'new game' to start the timer. Click on a card from
+      each pile to flip them over and, when you have found a pair, hit the 'I
+      found a pair!' button.<br />
+      <br />
+      If it's not a match then you lose a life (you have just three!). Get some help by clicking on the 'HELP!' button for an
+      example sentence to see the word in context or listen to the
+      pronunciation via the 'AUDIO' button.
+
+      <br />
+      <br />
+      You have 4 minutes before the clock runs out.... Good luck! 🤞
+    </p>
+
+    <p id="tester-text"></p>
+    <form action="#">
+      <label for="vocab">Vocab Sets</label>
+      <select id="vocab-list" name="vocabulary" id="vocab">
+        <option href="#">Family</option>
+        <option href="#">Fruit</option>
+        <option href="#">Countries/Nationalities</option>
+        <option href="#">Transport</option>
+        <option href="#">Beginner Regular Verbs 1</option>
+        <option href="#">Beginner Regular Verbs 2</option>
+        <option href="#">Beginner Irregular Verbs 1</option>
+        <option href="#">Beginner Irregular Verbs 2</option>
+      </select>
+      <input id="submit" type="submit" value="Submit" />
+    </form>
+
+    <div id="gameBtns">
+      <button id="pair-btn" class="btn">I found a pair! 👯‍♂️</button
+      ><button id="not-pair-btn" class="btn">Not a pair ❌</button><button id="new-game-btn" class="btn">New game 🐣</button>
     </div>
-</body>
+    <button id="test-audio">
+      Audio test button
+      <audio src="./audio-files/Gato - test.m4a"></audio>
+    </button>
+    <audio id="flip-aud" src="./audio-files/Card-flip-sound-effect.mp3"></audio>
+    <audio id="win-aud" src="./audio-files/Game-show-winning.mp3"></audio>
+    <audio id="shuffle-aud" src="./audio-files/shuffling-cards-1.mp3"></audio>
+    <audio id="right-answ-aud" src="./audio-files/rightanswer.mp3"></audio>
+    <audio id="wrong-answ-aud" src="./audio-files/wronganswer.mp3"></audio>
+    <audio id="game-over-aud" src="./audio-files/gameover.mp3"></audio>
+
+    <div id="pt-audios"></div>
+
+    <main id="game-container">
+      <div id="en-card-container"></div>
+      <div id="middle-content">
+        <h2 id="timer">
+          <span id="timer-mins">04</span>:<span id="zero-second"></span
+          ><span id="timer-seconds">00</span>
+        </h2>
+        <br />
+        <br />
+        <br />
+        <h2 id="lives-title">Lives</h2>
+        <div id="lives">
+          <img id="life-1" src="./images/heart.png" alt="life" />
+          <img id="life-2" src="./images/heart.png" alt="life" />
+          <img id="life-3" src="./images/heart.png" alt="life" />
+        </div>
+      </div>
+      <div id="pt-card-container"></div>
+    </main>
+  </body>
 </html>
