@@ -59,14 +59,11 @@ class PtNounCard {
   returnCardContent() {
     const ptCardContent = document.querySelector("#pt-card-content");
     let cardContent = `
-    <div id="pt-card-content">
     <h2 id="pt-word">${this.word}</h2> 
     <div id="pt-buttons">
         <button id="help ${this.id}">HELP!</button> 
-        <button id="audio-button">AUDIO</button>
-    </div>
+        <button id="audio-button ${this.id}">AUDIO</button>
     </div>`;
-    ptCardContent.style.visibility = "visible";
     return cardContent;
   }
 
@@ -313,7 +310,6 @@ const lifeThree = document.querySelector("#life-3");
 //FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS
 // AUDIO FUNCTION
 const playAudio = () => {
-  // const isPlaying = false;
   audioBtnContent.play();
 };
 
@@ -389,8 +385,7 @@ const getPtCards = () => {
             if (ptVarForReturn == ptCardArr[i].id) {
               console.log(card.childNodes[1]);
               card.childNodes[1].innerHTML = ptCardArr[i].returnCardContent(); // card.childNodes[1].innerHTML accesses the location where we want the HTML to be replaced. PtCardArr[i] identifies the card in the array we want to perform the function on - it will only be one as the action is only performed if the ids match.
-              //   console.log(ptCardArr[i].childNodes[1].style.visibility);
-              ptCardArr[i].childNodes[1].style.visibility = "visible";
+              // ptCardArr[i].childNodes[1].style.visibility = "visible";
             }
           }
           return;
@@ -442,13 +437,6 @@ const getPtCards = () => {
           onePtCardShowing = true;
           flipAud.play();
         }
-        //else if (
-        //   ptCardSelected.childNodes[1].style.visibility === "visible"
-        // ) {
-        //   ptCardSelected.childNodes[1].style.visibility = "hidden";
-        //   onePtCardShowing = false;
-        //   flipAud.play();
-        // }
 
         return ptCardSelected;
       });
@@ -571,7 +559,7 @@ const doCardsNotMatch = () => {
       ptCardSelected = "";
       livesArr.shift();
       console.log(livesArr);
-      cardsMatch = true;
+      cardsMatch = true; // might not need this - check
     } else {
       enCardSelected.childNodes[1].style.visibility = "hidden";
       ptCardSelected.childNodes[1].style.visibility = "hidden";

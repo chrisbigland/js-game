@@ -129,6 +129,8 @@ p {
 
 #en-card-content {
     visibility: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 #gameBtns {
@@ -162,7 +164,7 @@ label {
 }
 
 #new-game-btn {
-    margin-left: 1%;
+    margin-left: 3%;
 }
 
 .pt-card {
@@ -205,6 +207,9 @@ label {
     border-radius: 5px;
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 #enImg {
