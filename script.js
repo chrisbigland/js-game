@@ -30,7 +30,6 @@ class PtNounCard {
 
   //PT CREATE LANGUAGE CARD METHOD
   createPtLanguageCard() {
-    console.log(`function activated`);
     let languageCard = `
       <div class="pt-card" id="${this.id}">
           <div id="pt-card-content">
@@ -55,7 +54,6 @@ class PtNounCard {
     return helpingContent;
   }
 
-  // is the problem with this one that I'm trying to change it to innerHTML but it's not all a sting? Maybe move the ptCardContent querySelector to outside of the method?
   returnCardContent() {
     const ptCardContent = document.querySelector("#pt-card-content");
     let cardContent = `
@@ -68,7 +66,6 @@ class PtNounCard {
   }
 
   playAudioFile() {
-    console.log(`audio function activated`);
     let audioContent = `<audio id="pt-Audio" src="${this.audio}"></audio>`;
     return audioContent;
   }
@@ -261,13 +258,7 @@ let ptCardSelected = "";
 let userChoicesArr = []; // limit to two items
 let matchedChoices = []; //if they match then put them into an array
 
-// Array.forEach(card => {
-//     let enCard = new card(card.animal, card.imgSrc, card.audio)
-// })
-
-let newEnArray = [];
-
-let seconds = 0;
+let seconds = 60;
 let minutes = 4;
 let oneEnCardShowing = false;
 let onePtCardShowing = false;
@@ -284,13 +275,11 @@ const zeroSecond = document.querySelector("#zero-second");
 const newGameBtn = document.querySelector("#new-game-btn");
 let myInterval;
 const help = document.querySelector("#help");
-console.log(help);
 
 const submit = document.querySelector("#submit");
 
 //SETTING enCard variable to a node list of everything with class '.en-card'
 const enCard = document.querySelectorAll(".en-card");
-console.log(enCard);
 
 let gameInPlayOrNot = false;
 
@@ -325,15 +314,12 @@ const getEnCards = () => {
 
   // SHOW CARD WHEN CLICKING - EVENT LISTENER AND FOREACH
   enCard.forEach((card) => {
-    console.log(`game is in play = ${gameInPlayOrNot}`);
     if (gameInPlayOrNot === true) {
       card.addEventListener("click", (e) => {
-        console.log(e.target);
         if (enCardSelected === "") {
           enCardSelected = e.target;
         }
 
-        console.log({ enCardSelected });
         // for loop to check through en cards. if more than 1 has the style 'visible', don't perform the next action (making cards visible on click)
         if (e.target.id === "enImg") {
           e.target.parentElement.style.visibility = "hidden";
@@ -360,16 +346,14 @@ const getPtCards = () => {
   });
 
   const ptCard = document.querySelectorAll(".pt-card");
+  console.log(ptCard);
 
   ptCard.forEach((card) => {
     if (gameInPlayOrNot === true) {
       card.addEventListener("click", (e) => {
-        console.log(e.target.id);
         if (e.target.id.includes("help")) {
           ptVarForHelp = e.target.id.slice(5); // variable set with id of the help button's card
-          console.log(ptVarForHelp);
           for (let i = 0; i < ptCardArr.length; i++) {
-            console.log(ptCardArr[i]);
             if (ptVarForHelp == ptCardArr[i].id) {
               card.childNodes[1].innerHTML = ptCardArr[i].showHelpingSentence();
             }
@@ -379,11 +363,8 @@ const getPtCards = () => {
 
         if (e.target.id.includes("return")) {
           ptVarForReturn = e.target.id.slice(7);
-          console.log(ptVarForReturn);
           for (let i = 0; i < ptCardArr.length; i++) {
-            console.log(ptCardArr[i].id);
             if (ptVarForReturn == ptCardArr[i].id) {
-              console.log(card.childNodes[1]);
               card.childNodes[1].innerHTML = ptCardArr[i].returnCardContent(); // card.childNodes[1].innerHTML accesses the location where we want the HTML to be replaced. PtCardArr[i] identifies the card in the array we want to perform the function on - it will only be one as the action is only performed if the ids match.
               // ptCardArr[i].childNodes[1].style.visibility = "visible";
             }
@@ -392,9 +373,7 @@ const getPtCards = () => {
         }
 
         if (e.target.id.includes("audio-button")) {
-          console.log(e.target.id);
           ptVarForAudio = e.target.id.slice(13);
-          console.log(ptVarForAudio);
 
           for (let i = 0; i < ptCardArr.length; i++) {
             if (ptVarForAudio == ptCardArr[i].id) {
@@ -408,27 +387,6 @@ const getPtCards = () => {
         }
 
         if (ptCardSelected === "") {
-          // if (e.target.id === "pt-word") {
-          //   e.target.parentElement.style.visibility = "hidden";
-          //   onePtCardShowing = false;
-          // }
-          // if (e.target.id === "help" || e.target.id === "audio-button") {
-          //   e.target.parentElement.parentElement.style.visibility = "hidden";
-          //   onePtCardShowing = false;
-          // }
-          // if (e.target.id === "help") {
-          //   showHelpingSentence();
-
-          //   onePtCardShowing = false;
-          // }
-          // if (e.target.id === "help" || e.target.id === "audio-button") {
-          //   e.target.parentElement.style.visibility = "hidden";
-          //   onePtCardShowing = false;
-          // }
-
-          // if (ptCardSelected) {
-          //   return;
-          // }
           ptCardSelected = e.target;
         }
 
@@ -446,6 +404,13 @@ const getPtCards = () => {
 
 const myIntervalTimer = () => {
   myInterval = setInterval(function myTimer() {
+    console.log(timerSeconds);
+    if (seconds === 0 && minutes === 0) {
+      clearInterval(myTimer);
+      gameInPlayOrNot = false;
+      showTimesUp();
+    }
+
     if (seconds === 0) {
       // reducing the minutes by 1 when seconds gets to 0.
       minutes = minutes - 1; // not 100% sure why this can't be minutes--?
@@ -453,37 +418,36 @@ const myIntervalTimer = () => {
       seconds = 60; //replenishing seconds to 60
     }
     --seconds; // seconds countdown by x1 every time function run (every second)
-    timerSeconds.innerHTML = `${seconds}`;
+    console.log();
+    timerSeconds.innerHTML = seconds == 60 ? "00" : `${seconds}`;
+
     if (seconds < 10) {
-      zeroSecond.innerHTML = "0";
+      zeroSecond.innerHTML = ":0";
     }
     if (seconds >= 10) {
-      zeroSecond.innerHTML = "";
-    }
-    if (seconds === 0 && minutes === 0) {
-      clearInterval(myTimer);
-      gameInPlayOrNot = false;
-      showTimesUp();
+      zeroSecond.innerHTML = ":";
     }
   }, 1000);
 };
 
 const showTimesUp = () => {
-  console.log("time's up function activated");
   timer.innerHTML = `<p id="times-up">Time's up!</p>`;
 };
 
 const hideTimesUp = () => {
-  console.log(`time's up function activated`);
-  timer.innerHTML = `<h2 id="timer"><span id="timer-mins">${timerMins}</span>:<span id="zero-second"></span><span id="timer-seconds">${timerSeconds}</span></h2>`;
+  timer.innerHTML = "";
+  timerMins.innerHTML = minutes;
+  timerSeconds.innerHTML = seconds == 60 ? "00" : `${seconds}`; timer.appendChild(timerMins);
+  timer.appendChild(zeroSecond);
+  timer.appendChild(timerSeconds);
 };
 
 const doCardsMatch = () => {
   if (oneEnCardShowing === true && onePtCardShowing === true) {
     // will only run if two cards showing
     if (enCardSelected.id === ptCardSelected.id) {
-      enCardSelected.innerHTML = `<h2 style="color:orange;text-align:center;background-color:white;opacity:0.8;">PAIRED OFF ✅</h2>`;
-      ptCardSelected.innerHTML = `<h2 style="color:orange;text-align:center;background-color:white;opacity:0.8;">PAIRED OFF ✅</h2>`;
+      enCardSelected.innerHTML = `<h2 style="color:orange;text-align:center;background-color:white;opacity:0.9;">PAIRED OFF ✅</h2>`;
+      ptCardSelected.innerHTML = `<h2 style="color:orange;text-align:center;background-color:white;opacity:0.9;">PAIRED OFF ✅</h2>`;
       rightAnswAud.play();
       enCardSelected = "";
       ptCardSelected = "";
@@ -518,15 +482,12 @@ const doCardsMatch = () => {
       oneEnCardShowing = false;
       onePtCardShowing = false;
       livesArr.shift();
-      console.log(livesArr);
     }
   } else if (gameInPlayOrNot === true) {
     alert("Please ensure you've selected one of each language card");
   } else {
     alert("Start the game by hitting the 'new game' button");
   }
-
-  console.log(cardsMatch);
   return cardsMatch;
 };
 
@@ -558,7 +519,6 @@ const doCardsNotMatch = () => {
       enCardSelected = "";
       ptCardSelected = "";
       livesArr.shift();
-      console.log(livesArr);
       cardsMatch = true; // might not need this - check
     } else {
       enCardSelected.childNodes[1].style.visibility = "hidden";
@@ -571,8 +531,6 @@ const doCardsNotMatch = () => {
   } else {
     alert(`Please ensure you've selected one of each language card`);
   }
-
-  console.log(cardsMatch);
   return cardsMatch;
 };
 
@@ -583,31 +541,43 @@ audioBtn.addEventListener("click", () => {
 
 // NEW GAME BUTTON EVENT LISTENER
 newGameBtn.addEventListener("click", () => {
-  gameInPlayOrNot = true;
+  // gameInPlayOrNot = true;
   enCardSelected = "";
   ptCardSelected = "";
   oneEnCardShowing = false;
   onePtCardShowing = false;
-  console.log(`game is in play = ${gameInPlayOrNot}`);
-  if (timerMins === 4) {
+  seconds = 0;
+  minutes = 4;
+  if (!gameInPlayOrNot) {
+    // if game not in play i.e. if time's up or just landed on page
+    hideTimesUp();
     myIntervalTimer();
-  } else if (minutes === 0 && seconds === 0) {
-    // (currently showing time's up)
-    minutes = 4;
-    // timer.innerHTML = `${minutes}:${seconds}`;
-    hideTimesUp(); // should reset html to show time
-    clearInterval(myInterval);
-    myIntervalTimer();
+    gameInPlayOrNot = true;
   } else {
     // if game already in play
-    seconds = 0;
-    minutes = 4;
+    // should reset html to show time
     clearInterval(myInterval);
     myIntervalTimer();
-  } // setInterval repeats a function at every given time-interval. first parameter is the function, second is the time in milliseconds.
-  console.log(gameInPlayOrNot);
+  }
+  // if (timerMins === 4) {
+  //   myIntervalTimer();
+  // } else if (minutes === 0 && seconds === 0) {
+  //   // (currently showing time's up)
+  //   minutes = 4;
+  //   // timer.innerHTML = `${minutes}:${seconds}`;
+  //   hideTimesUp(); // should reset html to show time
+  //   clearInterval(myInterval);
+  //   myIntervalTimer();
+  // } else {
+  //   // if game already in play
+  //   seconds = 0;
+  //   minutes = 4;
+  //   clearInterval(myInterval);
+  //   myIntervalTimer();
+  // } // setInterval repeats a function at every given time-interval. first parameter is the function, second is the time in milliseconds.
+  // console.log(gameInPlayOrNot);
 
-  //SHUFFLE enCardArr (and later add on ptCardArr
+  //SHUFFLE
   let arrayShuffle = function (arr) {
     // creating new arrayShuffle function. Parameter/placeholder 'arr'
     let newPos, // declaring new variables 'newPos' and 'temp' to be used within function
@@ -619,23 +589,20 @@ newGameBtn.addEventListener("click", () => {
       temp = arr[i]; // assigning each array value to a temporary variable so this is stored to temp.
       arr[i] = arr[newPos]; // now placing the new position number as an index number value on each array value
       arr[newPos] = temp; // we will now place what we put into 'temp' into our array value with a new index number(position). Doing this in a loop means each value is swapped.
-      // include an update to HTML here so that card content updated as looping through?
       shuffleAud.play();
     }
     return arr;
   };
 
-  newEnArray = arrayShuffle(enCardArr);
-  newPtArray = arrayShuffle(ptCardArr);
-  console.log(enCardArr);
-  console.log(ptCardArr);
+  arrayShuffle(enCardArr);
+  arrayShuffle(ptCardArr);
+
   if (livesArr.length < 3) {
     livesArr = [3, 2, 1];
     lifeOne.style.visibility = "visible";
     lifeTwo.style.visibility = "visible";
     lifeThree.style.visibility = "visible";
   }
-  console.log(livesArr);
   getEnCards();
   getPtCards();
 });
@@ -657,7 +624,6 @@ getEnCards();
 getPtCards();
 
 // OUTSTANDING ACTIONS
-// TIMER - Allow timer to restart after time's up. Time's up writing needs to be amended to fit screen.
 //time's up overspills when screen is small
 /// make text flash different colours when time's up - use interval timer for this?
 //fix alignment for 'paired off' text.
@@ -666,4 +632,4 @@ getPtCards();
 //rabbit pic overflows. Overspilling text for help - cow.
 // make cards 'data-id'
 // move new game button - too easy to click on
-// change paired off so it's centered
+//readme pics
