@@ -344,7 +344,6 @@ const getPtCards = () => {
   });
 
   const ptCard = document.querySelectorAll(".pt-card");
-  console.log(ptCard);
 
   ptCard.forEach((card) => {
     if (gameInPlayOrNot === true) {
@@ -401,7 +400,6 @@ const getPtCards = () => {
 
 const myIntervalTimer = () => {
   myInterval = setInterval(function myTimer() {
-    console.log(timerSeconds);
     if (seconds === 0 && minutes === 0) {
       clearInterval(myTimer);
       gameInPlayOrNot = false;
@@ -415,7 +413,6 @@ const myIntervalTimer = () => {
       seconds = 60; //replenishing seconds to 60
     }
     --seconds; // seconds countdown by x1 every time function run (every second)
-    console.log();
     timerSeconds.innerHTML = seconds == 60 ? "00" : `${seconds}`;
 
     if (seconds < 10) {
