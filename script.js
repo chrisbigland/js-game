@@ -5,7 +5,6 @@ class EnNounCard {
     (this.word = word), (this.picture = picture), (this.id = id);
   }
 
-  // below - change 'id' to 'data-id' once I've made the cards visible.
   createEnLanguageCard() {
     const languageCard = `
           <div class="en-card" id="${this.id}">
@@ -296,7 +295,7 @@ const lifeOne = document.querySelector("#life-1");
 const lifeTwo = document.querySelector("#life-2");
 const lifeThree = document.querySelector("#life-3");
 
-//FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS
+//FUNCTIONS
 // AUDIO FUNCTION
 const playAudio = () => {
   audioBtnContent.play();
@@ -309,8 +308,7 @@ const getEnCards = () => {
     enCardContainer.innerHTML += card.createEnLanguageCard();
     return enCardArr;
   });
-  const enCard = document.querySelectorAll(".en-card"); // adding variable here because enCard needs to be created first.
-  console.log(enCard);
+  const enCard = document.querySelectorAll(".en-card"); 
 
   // SHOW CARD WHEN CLICKING - EVENT LISTENER AND FOREACH
   enCard.forEach((card) => {
@@ -365,8 +363,7 @@ const getPtCards = () => {
           ptVarForReturn = e.target.id.slice(7);
           for (let i = 0; i < ptCardArr.length; i++) {
             if (ptVarForReturn == ptCardArr[i].id) {
-              card.childNodes[1].innerHTML = ptCardArr[i].returnCardContent(); // card.childNodes[1].innerHTML accesses the location where we want the HTML to be replaced. PtCardArr[i] identifies the card in the array we want to perform the function on - it will only be one as the action is only performed if the ids match.
-              // ptCardArr[i].childNodes[1].style.visibility = "visible";
+              card.childNodes[1].innerHTML = ptCardArr[i].returnCardContent(); 
             }
           }
           return;
@@ -413,7 +410,7 @@ const myIntervalTimer = () => {
 
     if (seconds === 0) {
       // reducing the minutes by 1 when seconds gets to 0.
-      minutes = minutes - 1; // not 100% sure why this can't be minutes--?
+      minutes = minutes - 1;
       timerMins.innerHTML = `${minutes}`;
       seconds = 60; //replenishing seconds to 60
     }
@@ -534,14 +531,13 @@ const doCardsNotMatch = () => {
   return cardsMatch;
 };
 
-//EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS
+//EVENT LISTENERS 
 audioBtn.addEventListener("click", () => {
   playAudio();
 });
 
 // NEW GAME BUTTON EVENT LISTENER
 newGameBtn.addEventListener("click", () => {
-  // gameInPlayOrNot = true;
   enCardSelected = "";
   ptCardSelected = "";
   oneEnCardShowing = false;
@@ -559,36 +555,18 @@ newGameBtn.addEventListener("click", () => {
     clearInterval(myInterval);
     myIntervalTimer();
   }
-  // if (timerMins === 4) {
-  //   myIntervalTimer();
-  // } else if (minutes === 0 && seconds === 0) {
-  //   // (currently showing time's up)
-  //   minutes = 4;
-  //   // timer.innerHTML = `${minutes}:${seconds}`;
-  //   hideTimesUp(); // should reset html to show time
-  //   clearInterval(myInterval);
-  //   myIntervalTimer();
-  // } else {
-  //   // if game already in play
-  //   seconds = 0;
-  //   minutes = 4;
-  //   clearInterval(myInterval);
-  //   myIntervalTimer();
-  // } // setInterval repeats a function at every given time-interval. first parameter is the function, second is the time in milliseconds.
-  // console.log(gameInPlayOrNot);
+ 
 
   //SHUFFLE
   let arrayShuffle = function (arr) {
-    // creating new arrayShuffle function. Parameter/placeholder 'arr'
-    let newPos, // declaring new variables 'newPos' and 'temp' to be used within function
+    let newPos,
       temp;
 
     for (let i = arr.length - 1; i > 0; i--) {
-      // for loop starts at end value and works backwards. Runs for as long as index greater than 1.
-      newPos = Math.floor(Math.random() * (i + 1)); // we need to create a random number between 0 and 8 (or the number of indexes in the arr) to get a new index position. Here we creating a random number betw 0 and 0.99 then * by i + 1 (as that is the real no of positions. counting from 1) then rounded DOWN. This gives us a new, random position number of max 8. First round of loop multiplies by 9 (index 8 + 1), then by 8 (index 7 + 1) etc.
-      temp = arr[i]; // assigning each array value to a temporary variable so this is stored to temp.
-      arr[i] = arr[newPos]; // now placing the new position number as an index number value on each array value
-      arr[newPos] = temp; // we will now place what we put into 'temp' into our array value with a new index number(position). Doing this in a loop means each value is swapped.
+      newPos = Math.floor(Math.random() * (i + 1));
+      temp = arr[i]; 
+      arr[i] = arr[newPos]; 
+      arr[newPos] = temp; 
       shuffleAud.play();
     }
     return arr;
@@ -624,8 +602,6 @@ getEnCards();
 getPtCards();
 
 // OUTSTANDING ACTIONS
-//time's up overspills when screen is small
-/// make text flash different colours when time's up - use interval timer for this?
 //fix alignment for 'paired off' text.
 // CODE REFACTORING - could I merge returnCardContent() and createPtLanguageCard()?
 //Ensure I can click on a card after clicking on 'paired off' card
