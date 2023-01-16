@@ -1,4 +1,4 @@
-//CLASSES CLASSES CLASSES CLASSES CLASSES CLASSES CLASSES CLASSES CLASSES
+//CLASSES 
 //EN CARD CLASS
 class EnNounCard {
   constructor(word, picture, id) {
@@ -71,7 +71,7 @@ class PtNounCard {
   }
 }
 
-//VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES VARIABLES
+//VARIABLES
 
 // CARD DATA stored as variables
 const enDog = new EnNounCard("dog", "./images/dog.jpeg", 1);
