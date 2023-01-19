@@ -39,6 +39,9 @@ The time length can also be amended by changing the 'minutes' and 'seconds' vari
 <br>  
 <br>  
 
+## How it looks
+![pairsgamepicture](./images/pairs-game-pic.png)
+
 
 ## Credits
 - _nology coaches Jake, Charlie and Dan for their support and guidance. 
