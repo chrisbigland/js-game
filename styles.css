@@ -7,7 +7,7 @@
 }
 
 body {
-    background-image: url("./images/rio-background.png");
+    background-image: url("./images/rio.jpg");
     background-size: 100% 100%;
 }
 
@@ -154,6 +154,8 @@ label {
 
 #lives-title {
     font-family: "Caveat", sans-serif;
+    margin-top: 40px;
+    color: #ffa500;
     font-size: 5rem;
 }
 
