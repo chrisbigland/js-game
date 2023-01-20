@@ -431,7 +431,7 @@ const showTimesUp = () => {
 const hideTimesUp = () => {
   timer.innerHTML = "";
   timerMins.innerHTML = minutes;
-  timerSeconds.innerHTML = seconds == 60 ? "00" : `${seconds}`; timer.appendChild(timerMins);
+  timerSeconds.innerHTML = "00"; timer.appendChild(timerMins);
   timer.appendChild(zeroSecond);
   timer.appendChild(timerSeconds);
 };
