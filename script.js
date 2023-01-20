@@ -246,8 +246,8 @@ const ptCardArr = [
   ptTiger,
 ];
 
-const audioBtnContent = document.querySelector("#test-audio").children[0];
-const audioBtn = document.querySelector("#test-audio");
+// const audioBtnContent = document.querySelector("#test-audio").children[0];
+// const audioBtn = document.querySelector("#test-audio");
 
 const enCardContent = document.querySelector("#en-card-content");
 
@@ -297,9 +297,9 @@ const lifeThree = document.querySelector("#life-3");
 
 //FUNCTIONS
 // AUDIO FUNCTION
-const playAudio = () => {
-  audioBtnContent.play();
-};
+// const playAudio = () => {
+//   audioBtnContent.play();
+// };
 
 //GET EN CARDS FUNCTION
 const getEnCards = () => {
@@ -431,7 +431,7 @@ const showTimesUp = () => {
 const hideTimesUp = () => {
   timer.innerHTML = "";
   timerMins.innerHTML = minutes;
-  timerSeconds.innerHTML = "00"; timer.appendChild(timerMins);
+  timerSeconds.innerHTML = seconds == 60 ? "00" : `00`; timer.appendChild(timerMins);
   timer.appendChild(zeroSecond);
   timer.appendChild(timerSeconds);
 };
@@ -529,9 +529,9 @@ const doCardsNotMatch = () => {
 };
 
 //EVENT LISTENERS 
-audioBtn.addEventListener("click", () => {
-  playAudio();
-});
+// audioBtn.addEventListener("click", () => {
+//   playAudio();
+// });
 
 // NEW GAME BUTTON EVENT LISTENER
 newGameBtn.addEventListener("click", () => {
