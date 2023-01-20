@@ -67,54 +67,7 @@ p {
     
 }
 
-@media screen and (max-width: 1250px) {
-    #pt-card-container {
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 16.66% 16.66% 16.66% 16.66% 16.66% 16.66%;
-    }
-    #en-card-container {
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 16.66% 16.66% 16.66% 16.66% 16.66% 16.66%;
-    }
 
-    p {
-        font-size: 0.8rem;
-        padding: 35px 150px;
-    }
-
-    #timer {
-        font-size: 2.5rem;
-    }
-
-    #lives-title {
-        font-size: 1em;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    #pt-card-container {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
-    }
-
-    #en-card-container {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
-    }
-
-    p {
-        font-size: 0.7rem;
-        padding: 20px 100px;
-    }
-
-    #timer {
-        font-size: 2rem;
-    }
-
-    #lives-title {
-        font-size: 2rem;
-    }
-}
 
 /* @media screen and (max-width: 700px) {
     #lives-title { 
@@ -243,4 +196,62 @@ label {
 #life-3 {
     width: 50px;
     height: 50px;
+}
+
+
+@media screen and (max-width: 1250px) {
+    #pt-card-container {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 16.66% 16.66% 16.66% 16.66% 16.66% 16.66%;
+    }
+    #en-card-container {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 16.66% 16.66% 16.66% 16.66% 16.66% 16.66%;
+    }
+
+    p {
+        font-size: 0.8rem;
+        padding: 35px 150px;
+    }
+
+    #timer {
+        font-size: 2.5rem;
+    }
+
+    #lives-title {
+        font-size: 3rem;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #pt-card-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+    }
+
+    #en-card-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+    }
+
+    p {
+        font-size: 0.7rem;
+        padding: 20px 100px;
+    }
+
+    #timer {
+        font-size: 2rem;
+    }
+
+    #lives-title {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 550px) {
+
+    #timer {
+        font-size: 1.3rem;
+    }
+
 }
