@@ -37,7 +37,7 @@ p {
 
 #times-up {
     text-align: center;
-    color: #ffa500;
+    color: yellow;
     font-size:0.9em;
 }
 
@@ -256,6 +256,10 @@ label {
 @media screen and (max-width: 550px) {
 
     #timer {
+        font-size: 1.3rem;
+    }
+
+    #lives-title {
         font-size: 1.3rem;
     }
 
