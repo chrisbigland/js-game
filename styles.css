@@ -68,12 +68,6 @@ p {
 }
 
 
-
-/* @media screen and (max-width: 700px) {
-    #lives-title { 
-        font-size: 0.5em;
-} */
-
 #pt-buttons {
     display: flex;
     justify-content: space-around;
@@ -94,6 +88,7 @@ p {
 #gameBtns {
     display: flex;
     justify-content: center;
+    margin: 20px;
 }
 
 .btn {
@@ -153,10 +148,10 @@ label {
 }
 
 #lives-title {
-    font-family: "Caveat", sans-serif;
+    font-family: "Lemonada", sans-serif;
     margin-top: 40px;
-    color: #ffa500;
-    font-size: 5rem;
+    color: yellow;
+    font-size: 4rem;
 }
 
 .en-card {
@@ -222,6 +217,14 @@ label {
 
     #lives-title {
         font-size: 3rem;
+    }
+}
+
+@media screen and (max-width: 790px) {
+    #lives {
+        display: flex;
+        flex-direction: column;
+        margin-left: 1.6vw;
     }
 }
 

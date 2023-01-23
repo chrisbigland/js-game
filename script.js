@@ -246,9 +246,6 @@ const ptCardArr = [
   ptTiger,
 ];
 
-// const audioBtnContent = document.querySelector("#test-audio").children[0];
-// const audioBtn = document.querySelector("#test-audio");
-
 const enCardContent = document.querySelector("#en-card-content");
 
 let enCardSelected = "";
@@ -316,12 +313,15 @@ const getEnCards = () => {
       card.addEventListener("click", (e) => {
         if (enCardSelected === "") {
           enCardSelected = e.target;
+          console.log("condition 1 activated")
+          console.log(enCardSelected)
         }
 
         // for loop to check through en cards. if more than 1 has the style 'visible', don't perform the next action (making cards visible on click)
         if (e.target.id === "enImg") {
           e.target.parentElement.style.visibility = "hidden";
           oneEnCardShowing = false;
+          console.log("condition 2 activated")
         }
         if (
           oneEnCardShowing === false // if no EN cards are showing
@@ -329,6 +329,7 @@ const getEnCards = () => {
           enCardSelected.childNodes[1].style.visibility = "visible";
           oneEnCardShowing = true;
           flipAud.play();
+          console.log("condition 3 activated")
         }
         return enCardSelected;
       });
@@ -529,9 +530,6 @@ const doCardsNotMatch = () => {
 };
 
 //EVENT LISTENERS 
-// audioBtn.addEventListener("click", () => {
-//   playAudio();
-// });
 
 // NEW GAME BUTTON EVENT LISTENER
 newGameBtn.addEventListener("click", () => {
