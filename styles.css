@@ -1,266 +1,289 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Lemonada&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Caveat&family=Lemonada&display=swap");
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-image: url("./images/rio.jpg");
-    background-size: 100% 100%;
+  background-image: url("./images/rio.jpg");
+  background-size: 100% 100%;
 }
 
 h1 {
-    text-align: center;
-    font-family: "Lemonada", sans-serif;
+  text-align: center;
+  font-family: "Lemonada", sans-serif;
 }
 
 p {
-    font-family: "Lemonada", sans-serif;
-    font-size: 0.9rem;
-    padding: 25px 300px;
-    text-align: center;
+  font-family: "Lemonada", sans-serif;
+  font-size: 0.9rem;
+  padding: 25px 300px;
+  text-align: center;
 }
 
 #game-container {
-     display: flex;
-    height: 90vh;
-    width: 100vw;
+  display: flex;
+  height: 90vh;
+  width: 100vw;
 }
 
-#timer { 
-    font-family: "Lemonada", sans-serif;
-    font-size: 4rem;
-
+#timer {
+  font-family: "Lemonada", sans-serif;
+  font-size: 4rem;
 }
 
 #times-up {
-    text-align: center;
-    color: yellow;
-    font-size:0.9em;
+  text-align: center;
+  color: yellow;
+  font-size: 0.9em;
 }
 
 #vocab-list {
-    font-family: "Lemonada", sans-serif;
+  font-family: "Lemonada", sans-serif;
 }
 
 #en-card-container {
-    height: 100%;
-    width: 40%;
-    font-size: 1rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 25% 25% 25% 25%;
-    gap: 1%;
-    font-family: "Caveat", sans-serif;
+  height: 100%;
+  width: 40%;
+  font-size: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 25% 25% 25% 25%;
+  gap: 1%;
+  font-family: "Caveat", sans-serif;
 }
 
 #pt-card-container {
-    height: 100%;
-    width: 40%;
-    font-size: 1rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 25% 25% 25% 25%;
-    gap: 1%;
-    
+  height: 100%;
+  width: 40%;
+  font-size: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 25% 25% 25% 25%;
+  gap: 1%;
 }
 
-
 #pt-buttons {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
 #pt-card-content {
-    display: flex;
-    flex-direction: column;
-    visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
 }
 
 #en-card-content {
-    visibility: hidden;
-    display: flex;
-    flex-direction: column;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 #gameBtns {
-    display: flex;
-    justify-content: center;
-    margin: 20px;
+  display: flex;
+  justify-content: center;
+  margin: 20px;
 }
 
 .btn {
-    border-radius: 5px;
-    font-family: "Lemonada", sans-serif;
-    font-size: 1.2rem;
-    width: auto;
-    padding: 0.5%;
+  border-radius: 5px;
+  font-family: "Lemonada", sans-serif;
+  font-size: 1.2rem;
+  width: auto;
+  padding: 0.5%;
 }
 
 #submit {
-        border-radius: 5px;
-        font-family: "Lemonada", sans-serif;
-        font-size: 0.6rem;
-        line-height: 0.8rem;
-        width: auto;
-        padding: 0.5%;
+  border-radius: 5px;
+  font-family: "Lemonada", sans-serif;
+  font-size: 0.6rem;
+  line-height: 0.8rem;
+  width: auto;
+  padding: 0.5%;
 }
 
 label {
-    font-family: "Lemonada", sans-serif;
+  font-family: "Lemonada", sans-serif;
 }
 
 #pair-btn {
-    margin-right: 1%;
+  margin-right: 1%;
 }
 
 #new-game-btn {
-    margin-left: 3%;
+  margin-left: 3%;
 }
 
 .pt-card {
-    background-image: url("./images/brazilian-flag2.jpeg");
-    background-size: 100% 100%;
-    border: 2px solid black;
-    text-align: center;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+  background-image: url("./images/brazilian-flag2.jpeg");
+  background-size: 100% 100%;
+  border: 2px solid black;
+  text-align: center;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .pt-card h2 {
-    font-family: "Caveat", sans-serif;
-    border-radius: 5px;
-    font-weight: 900;
-    background-color: aliceblue;
-    opacity: .8;
+  font-family: "Caveat", sans-serif;
+  border-radius: 5px;
+  font-weight: 900;
+  background-color: aliceblue;
+  opacity: 0.8;
 }
 
 .en-card h2 {
-    font-family: "Caveat", sans-serif;
-    border-radius: 5px;
-    font-weight: 900;
-    background-color: aliceblue;
-    opacity: .8;
+  font-family: "Caveat", sans-serif;
+  border-radius: 5px;
+  font-weight: 900;
+  background-color: aliceblue;
+  opacity: 0.8;
 }
 
 #lives-title {
-    font-family: "Lemonada", sans-serif;
-    margin-top: 40px;
-    color: yellow;
-    font-size: 4rem;
+  font-family: "Lemonada", sans-serif;
+  margin-top: 40px;
+  color: yellow;
+  font-size: 4rem;
 }
 
 .en-card {
-    background-image: url("./images/uk-flag.jpeg");
-    background-size: 100% 100%;
-    border: 2px solid black;
-    text-align: center;
-    border-radius: 5px;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+  background-image: url("./images/uk-flag.jpeg");
+  background-size: 100% 100%;
+  border: 2px solid black;
+  text-align: center;
+  border-radius: 5px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 #enImg {
-    width: 100%; 
-    height: 80%;
-    border-radius: 5px;
+  width: 100%;
+  height: 80%;
+  border-radius: 5px;
 }
 
 #middle-content {
-    display: flex;
-    flex-direction:column;
-    align-items: center;
-    width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
 }
 
 #life-1 {
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
 }
 
 #life-2 {
-    width: 50px;
-    height: 50px
+  width: 50px;
+  height: 50px;
 }
 
 #life-3 {
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
 }
-
 
 @media screen and (max-width: 1250px) {
-    #pt-card-container {
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 16.66% 16.66% 16.66% 16.66% 16.66% 16.66%;
-    }
-    #en-card-container {
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 16.66% 16.66% 16.66% 16.66% 16.66% 16.66%;
-    }
+  #pt-card-container {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 16.66% 16.66% 16.66% 16.66% 16.66% 16.66%;
+  }
+  #en-card-container {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 16.66% 16.66% 16.66% 16.66% 16.66% 16.66%;
+  }
 
-    p {
-        font-size: 0.8rem;
-        padding: 35px 150px;
-    }
+  p {
+    font-size: 0.8rem;
+    padding: 35px 150px;
+  }
 
-    #timer {
-        font-size: 2.5rem;
-    }
+  #en-card-content {
+    margin-top: 60px;
+  }
 
-    #lives-title {
-        font-size: 3rem;
-    }
+  #enImg {
+    height: 50%;
+  }
+  #timer {
+    font-size: 2.5rem;
+  }
+
+  #lives-title {
+    font-size: 3rem;
+  }
 }
-
-@media screen and (max-width: 790px) {
-    #lives {
-        display: flex;
-        flex-direction: column;
-        margin-left: 1.6vw;
-    }
+@media screen and (max-width: 950px) {
+  #en-card-content {
+    margin-top: 30px;
+  }
+  #enImg {
+    height: 60%;
+  }
 }
 
 @media screen and (max-width: 900px) {
-    #pt-card-container {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
-    }
+  #pt-card-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+  }
 
-    #en-card-container {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
-    }
+  #en-card-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+  }
 
-    p {
-        font-size: 0.7rem;
-        padding: 20px 100px;
-    }
+  p {
+    font-size: 0.7rem;
+    padding: 20px 100px;
+  }
 
-    #timer {
-        font-size: 2rem;
-    }
+  #timer {
+    font-size: 2rem;
+  }
 
-    #lives-title {
-        font-size: 2rem;
-    }
+  #lives-title {
+    font-size: 2rem;
+  }
+
+  #enImg {
+    /* height: 45%; */
+    height: 11vh;
+    margin-bottom: 7.5vh;
+  }
+
+  #eng-word {
+    visibility: hidden;
+  }
+}
+
+@media screen and (max-width: 790px) {
+  #lives {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.6vw;
+  }
+
+  #enImg {
+    height: 11vh;
+  }
 }
 
 @media screen and (max-width: 550px) {
+  #timer {
+    font-size: 1.3rem;
+  }
 
-    #timer {
-        font-size: 1.3rem;
-    }
-
-    #lives-title {
-        font-size: 1.3rem;
-    }
-
+  #lives-title {
+    font-size: 1.3rem;
+  }
 }

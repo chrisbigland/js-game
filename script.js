@@ -9,7 +9,7 @@ class EnNounCard {
     const languageCard = `
           <div class="en-card" id="${this.id}">
               <div id="en-card-content">
-                  <h2>${this.word}</h2> 
+                  <h2 id="eng-word">${this.word}</h2> 
                   <img id="enImg" src="${this.picture}">
               </div>
           </div>`;
@@ -293,10 +293,6 @@ const lifeTwo = document.querySelector("#life-2");
 const lifeThree = document.querySelector("#life-3");
 
 //FUNCTIONS
-// AUDIO FUNCTION
-// const playAudio = () => {
-//   audioBtnContent.play();
-// };
 
 //GET EN CARDS FUNCTION
 const getEnCards = () => {
